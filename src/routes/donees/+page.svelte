@@ -10,7 +10,13 @@
 	<!-- Create a bullet point for each item in data.donees -->
 	{#each data.donees as donee}
 		<li>
-			<a href={donee.website} class="hover:text-blue-800 hover:underline">{donee.donee}</a>
+			<!-- Open the link in a new tab -->
+			<a
+				target="_blank"
+				rel="noopener noreferrer"
+				href={donee.website}
+				class="hover:text-blue-800 hover:underline">{donee.donee}</a
+			>
 		</li>
 	{/each}
 </div>
