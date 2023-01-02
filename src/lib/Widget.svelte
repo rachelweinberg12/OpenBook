@@ -2,6 +2,7 @@
 	export let textValue: string;
 </script>
 
-<div class="container text-blue-500">
-	{textValue}
+<div>
+	<p>{textValue}</p>
+	<a class="text-blue-700" href="/donees">See donees</a>
 </div>

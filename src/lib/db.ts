@@ -4,7 +4,6 @@ import type { Database } from './types/supabase';
 
 const supabaseUrl = 'https://emqmvubrovsmdfjrbqjr.supabase.co';
 const supabaseKey = env.SUPABASE_KEY;
-console.log('supabase key is', supabaseKey);
 const supabase = createClient<Database>(supabaseUrl, supabaseKey as string, {
 	db: { schema: 'donations' }
 });
