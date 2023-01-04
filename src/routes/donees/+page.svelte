@@ -8,14 +8,26 @@
 	<h2 class="text-xl mb-2">25 random donees</h2>
 
 	<!-- Create a bullet point for each item in data.donees -->
-	{#each data.donees as donee}
+	<!-- {#each data.donees as donee}
 		<li>
-			<!-- Open the link in a new tab -->
 			<a
 				target="_blank"
 				rel="noopener noreferrer"
 				href={donee.website}
 				class="hover:text-blue-800 hover:underline">{donee.donee}</a
+			>
+		</li>
+	{/each} -->
+
+	<!-- Create a bullet point for each item in data.donees -->
+	{#each data.donations as donation}
+		<li>
+			<!-- Open the link in a new tab -->
+			<a
+				target="_blank"
+				rel="noopener noreferrer"
+				href={donation.url}
+				class="hover:text-blue-800 hover:underline">{donation.donee} - ${donation.amount}</a
 			>
 		</li>
 	{/each}
