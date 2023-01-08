@@ -13,3 +13,15 @@ export async function getDonations() {
 	}
 	return data ?? [];
 }
+
+export async function searchDonations(search: string) {
+	const { data, error } = await supabase
+		.from('donationsea')
+		.select()
+		.textSearch('donor', `${search}`)
+		.limit(100);
+	if (error) {
+		console.log(error);
+	}
+	return data ?? [];
+}
