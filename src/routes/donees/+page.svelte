@@ -6,6 +6,9 @@
 	type Row = Database['public']['Tables']['donationsea']['Row'];
 
 	import { DataHandler } from '@vincjo/datatables';
+	import Th from '../Th.svelte';
+	import ThFilter from '../ThFilter.svelte';
+
 	import { searchDonations } from '$lib/db';
 
 	const settings = {
@@ -14,31 +17,18 @@
 		rowsPerPage: 50,
 		columnFilter: true
 	};
-	/*let rows: Row[] = writable([]);*/
-	// let rows: any[];
-	export let data: PageData;
 
-	const handler = new DataHandler(data.donations, { rowsPerPage: 50 });
-	const rows = handler.getRows();
+	export let data: PageData;
 
 	let searchResults = data.donations;
 	let search: string = '';
+
+	const handler = new DataHandler(searchResults, { rowsPerPage: 50 });
+	const rows = handler.getRows();
 </script>
 
 <div class="p-4">
 	<h2 class="text-xl mb-2">25 random donations</h2>
-
-	<!-- Create a bullet point for each item in data.donees -->
-	<!-- {#each data.donees as donee}
-		<li>
-			<a
-				target="_blank"
-				rel="noopener noreferrer"
-				href={donee.website}
-				class="hover:text-blue-800 hover:underline">{donee.donee}</a
-			>
-		</li>
-	{/each} -->
 
 	<!-- Create a bullet point for each item in data.donees -->
 	{#each data.donations as donation}
@@ -62,20 +52,27 @@
 	>
 </form>
 
-<thead>
-	<th data-key="id">Amount</th>
-	<th data-key="donor">Donor</th>
-	<th data-key="donee">Donee</th>
-</thead>
-<tbody>
-	<!-- {#if rows} -->
-	{#each searchResults as row}
+<table>
+	<thead>
 		<tr>
-			<td>{row.amount}</td>
-			<td>{row.donor}</td>
-			<td>{row.donee}</td>
+			<Th {handler} orderBy={'amount'}>Amount</Th>
+			<Th {handler} orderBy={'donor'}>Donor</Th>
+			<Th {handler} orderBy={'donee'}>Donee</Th>
 		</tr>
-	{/each}
-	<!-- {/if} -->
-</tbody>
+		<tr>
+			<ThFilter {handler} filterBy={'amount'} />
+			<ThFilter {handler} filterBy={'donor'} />
+			<ThFilter {handler} filterBy={'donee'} />
+		</tr>
+	</thead>
+	<tbody>
+		{#each $rows as row}
+			<tr>
+				<td>{row.amount}</td>
+				<td>{row.donor}</td>
+				<td>{row.donee}</td>
+			</tr>
+		{/each}
+	</tbody>
+</table>
 <!-- </Datatable> -->
