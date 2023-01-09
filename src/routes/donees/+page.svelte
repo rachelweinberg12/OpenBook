@@ -6,8 +6,11 @@
 	type Row = Database['public']['Tables']['donationsea']['Row'];
 
 	import { DataHandler } from '@vincjo/datatables';
-	import Th from '../Th.svelte';
-	import ThFilter from '../ThFilter.svelte';
+	import Th from '@vincjo/datatables/Th.svelte';
+	import ThFilter from '@vincjo/datatables/ThFilter.svelte';
+	import RowsPerPage from '@vincjo/datatables/RowsPerPage.svelte';
+	import RowCount from '@vincjo/datatables/RowCount.svelte';
+	import Pagination from '@vincjo/datatables/Pagination.svelte';
 
 	import { searchDonations } from '$lib/db';
 
@@ -52,6 +55,10 @@
 	>
 </form>
 
+<header>
+	<RowsPerPage {handler} />
+</header>
+
 <table>
 	<thead>
 		<tr>
@@ -75,4 +82,8 @@
 		{/each}
 	</tbody>
 </table>
-<!-- </Datatable> -->
+
+<footer>
+	<RowCount {handler} />
+	<Pagination {handler} />
+</footer>
