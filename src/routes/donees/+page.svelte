@@ -6,6 +6,7 @@
 	type Row = Database['public']['Tables']['donationsea']['Row'];
 
 	import { DataHandler } from '@vincjo/datatables';
+	import { searchDonations } from '$lib/db';
 
 	const settings = {
 		sortable: true,
@@ -56,11 +57,9 @@
 <!-- <Datatable {settings} data={data.donations} bind:dataRows={rows}> -->
 <form>
 	<Search bind:text={search} />
-	<!--
 	<button on:click={() => searchDonations(search).then((res) => (searchResults = res))}>
 		Search</button
 	>
-	-->
 </form>
 
 <thead>

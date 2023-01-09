@@ -1,13 +1,21 @@
 import { createClient } from '@supabase/supabase-js';
-import { env } from '$env/dynamic/private';
+import { env } from '$env/dynamic/public';
 import type { Database } from './types/supabase';
 
 const supabaseUrl = 'https://emqmvubrovsmdfjrbqjr.supabase.co';
-const supabaseKey = env.SUPABASE_KEY;
+const supabaseKey = env.PUBLIC_SUPABASE_KEY;
 const supabase = createClient<Database>(supabaseUrl, supabaseKey as string);
 
 export async function getDonees() {
 	const { data, error } = await supabase.from('donees').select().limit(25);
+	if (error) {
+		console.log(error);
+	}
+	return data ?? [];
+}
+
+export async function getDonations() {
+	const { data, error } = await supabase.from('donationsea').select().limit(100);
 	if (error) {
 		console.log(error);
 	}
@@ -25,7 +33,6 @@ export async function searchDonations(search: string) {
 	}
 	return data ?? [];
 }
-
 
 export type Donee = Database[];
 type DoneesResponse = Awaited<ReturnType<typeof getDonees>>;
