@@ -1,9 +1,6 @@
 <script lang="ts">
 	import type { PageData } from './$types';
-	/*import { Datatable } from 'svelte-simple-datatables';*/
-	import type { Database } from '$lib/types/supabase';
 	import Search from './Search.svelte';
-	type Row = Database['public']['Tables']['donationsea']['Row'];
 
 	import { DataHandler } from '@vincjo/datatables';
 	import Th from '@vincjo/datatables/Th.svelte';
@@ -14,76 +11,73 @@
 
 	import { searchDonations } from '$lib/db';
 
-	const settings = {
-		sortable: true,
-		pagination: true,
-		rowsPerPage: 50,
-		columnFilter: true
-	};
-
 	export let data: PageData;
 
 	let searchResults = data.donations;
 	let search: string = '';
 
-	const handler = new DataHandler(searchResults, { rowsPerPage: 50 });
-	const rows = handler.getRows();
+	let handler = new DataHandler(data.donations, { rowsPerPage: 50 });
+	$: rows = handler.getRows();
+
+	function executeSearch() {
+		if (search.length > 0) {
+			searchDonations(search.replaceAll(' ', '<->')).then(
+				(res) => (handler = new DataHandler(res, { rowsPerPage: 50 }))
+			);
+		} else {
+			handler = new DataHandler(data.donations, { rowsPerPage: 50 });
+		}
+	}
+
+	function onKeyDown(event: KeyboardEvent) {
+		if (event.key === 'Enter') {
+			executeSearch();
+		}
+	}
 </script>
 
-<div class="p-4">
-	<h2 class="text-xl mb-2">25 random donations</h2>
-
-	<!-- Create a bullet point for each item in data.donees -->
-	{#each data.donations as donation}
-		<li>
-			<!-- Open the link in a new tab -->
-			<a
-				target="_blank"
-				rel="noopener noreferrer"
-				href={donation.url}
-				class="hover:text-blue-800 hover:underline">{donation.donee} - ${donation.amount}</a
-			>
-		</li>
-	{/each}
-</div>
-
-<!-- <Datatable {settings} data={data.donations} bind:dataRows={rows}> -->
-<form>
+<form class="font-poppins" on:keydown={onKeyDown}>
 	<Search bind:text={search} />
-	<button on:click={() => searchDonations(search).then((res) => (searchResults = res))}>
-		Search</button
-	>
 </form>
 
-<header>
+<header class="font-poppins">
 	<RowsPerPage {handler} />
 </header>
 
-<table>
+<table class="font-poppins">
 	<thead>
 		<tr>
+			<Th {handler} orderBy={'donation_date'}>Date</Th>
 			<Th {handler} orderBy={'amount'}>Amount</Th>
 			<Th {handler} orderBy={'donor'}>Donor</Th>
 			<Th {handler} orderBy={'donee'}>Donee</Th>
+			<Th {handler} orderBy={'cause_area'}>Cause Area</Th>
 		</tr>
 		<tr>
+			<ThFilter {handler} filterBy={'donation_date'} />
 			<ThFilter {handler} filterBy={'amount'} />
 			<ThFilter {handler} filterBy={'donor'} />
 			<ThFilter {handler} filterBy={'donee'} />
+			<ThFilter {handler} filterBy={'cause_area'} />
 		</tr>
 	</thead>
 	<tbody>
 		{#each $rows as row}
-			<tr>
+			<tr
+				class="ring-white ring-4 h-10 bg-red-300 text-center font-poppins hover:bg-red-400 hover:cursor-pointer"
+				on:click={() => (window.location.href = `/data/${row.donation_id}`)}
+			>
+				<td>{row.donation_date}</td>
 				<td>{row.amount}</td>
 				<td>{row.donor}</td>
 				<td>{row.donee}</td>
+				<td>{row.cause_area}</td>
 			</tr>
 		{/each}
 	</tbody>
 </table>
 
-<footer>
+<footer class="font-poppins">
 	<RowCount {handler} />
 	<Pagination {handler} />
 </footer>
