@@ -2,7 +2,7 @@
 	export let textValue: string;
 </script>
 
-<div>
+<div class="font-poppins">
 	<p>{textValue}</p>
-	<a class="text-blue-700" href="/donees">See donees</a>
+	<a class="text-blue-700" href="/data">See data</a>
 </div>

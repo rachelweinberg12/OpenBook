@@ -15,7 +15,7 @@ export async function getDonees() {
 }
 
 export async function getDonations() {
-	const { data, error } = await supabase.from('donationsea').select().limit(100);
+	const { data, error } = await supabase.from('donationsea').select();
 	if (error) {
 		console.log(error);
 	}
@@ -28,6 +28,18 @@ export async function searchDonations(search: string) {
 		.select()
 		.textSearch('donor', `${search}`)
 		.limit(100);
+	if (error) {
+		console.log(error);
+	}
+	return data ?? [];
+}
+
+export async function getDonation(id: string) {
+	const { data, error } = await supabase
+		.from('donationsea')
+		.select()
+		.eq('donation_id', id)
+		.limit(1);
 	if (error) {
 		console.log(error);
 	}

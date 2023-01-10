@@ -13,7 +13,6 @@
 
 	export let data: PageData;
 
-	let searchResults = data.donations;
 	let search: string = '';
 
 	let handler = new DataHandler(data.donations, { rowsPerPage: 50 });
