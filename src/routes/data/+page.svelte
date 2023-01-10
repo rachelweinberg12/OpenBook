@@ -63,13 +63,18 @@
 	<tbody>
 		{#each $rows as row}
 			<tr
-				class="ring-white ring-4 h-10 rounded-lg bg-red-300 text-center font-poppins hover:bg-red-400 hover:cursor-pointer"
-				on:click={() => (window.location.href = `/data/${row.donation_id}`)}
+				class="ring-white ring-4 h-10 rounded-lg bg-rose-50 text-center font-poppins hover:bg-rose-200 hover:cursor-pointer"
 			>
-				<td>{row.donation_date}</td>
-				<td>{row.amount}</td>
+				<td on:click={() => (window.location.href = `/data/${row.donation_id}`)}
+					>{row.donation_date}</td
+				>
+				<td on:click={() => (window.location.href = `/data/${row.donation_id}`)}>{row.amount}</td>
 				<td>{row.donor}</td>
-				<td>{row.donee}</td>
+				<td
+					on:click={() =>
+						(window.location.href = `/data/organizations/${row.donee.replaceAll(' ', '-')}`)}
+					>{row.donee}</td
+				>
 				<td>{row.cause_area}</td>
 			</tr>
 		{/each}

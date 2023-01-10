@@ -42,5 +42,31 @@ export async function getDonation(id: string) {
 	return data ?? [];
 }
 
+export async function getOrg(name: string) {
+	const { data, error } = await supabase.from('donees').select().eq('donee', name).limit(1);
+	if (error) {
+		console.log(error);
+	}
+	return data ?? [];
+}
+
+export async function getIncomings(name: string) {
+	console.log('hello?');
+	const { data, error } = await supabase.from('donationsea').select().eq('donee', name);
+	if (error) {
+		console.log(error);
+	}
+	console.log(data);
+	return data ?? [];
+}
+
+export async function getOutgoings(name: string) {
+	const { data, error } = await supabase.from('donationsea').select().eq('donor', name);
+	if (error) {
+		console.log(error);
+	}
+	return data ?? [];
+}
+
 export type Donee = Database[];
 type DoneesResponse = Awaited<ReturnType<typeof getDonees>>;
