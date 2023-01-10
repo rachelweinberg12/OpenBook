@@ -23,11 +23,7 @@ export async function getDonations() {
 }
 
 export async function searchDonations(search: string) {
-	const { data, error } = await supabase
-		.from('donationsea')
-		.select()
-		.textSearch('donor', `${search}`)
-		.limit(100);
+	const { data, error } = await supabase.rpc('search_donations', { keyword: search });
 	if (error) {
 		console.log(error);
 	}
