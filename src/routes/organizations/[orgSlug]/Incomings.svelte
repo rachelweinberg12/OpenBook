@@ -1,6 +1,7 @@
 <script lang="ts">
 	import type { PageData } from './$types';
-	import Search from './Search.svelte';
+	export let data: PageData;
+	import { formatLargeNumber } from '$lib/utils';
 
 	import { DataHandler } from '@vincjo/datatables';
 	import Th from '@vincjo/datatables/Th.svelte';
@@ -9,35 +10,9 @@
 	import RowCount from '@vincjo/datatables/RowCount.svelte';
 	import Pagination from '@vincjo/datatables/Pagination.svelte';
 
-	import { searchDonations } from '$lib/db';
-
-	export let data: PageData;
-
-	let search: string = '';
-
-	let handler = new DataHandler(data.donations, { rowsPerPage: 50 });
+	let handler = new DataHandler(data.incomings, { rowsPerPage: 20 });
 	$: rows = handler.getRows();
-
-	function executeSearch() {
-		if (search.length > 0) {
-			searchDonations(search.replaceAll(' ', '<->')).then(
-				(res) => (handler = new DataHandler(res, { rowsPerPage: 50 }))
-			);
-		} else {
-			handler = new DataHandler(data.donations, { rowsPerPage: 50 });
-		}
-	}
-
-	function onKeyDown(event: KeyboardEvent) {
-		if (event.key === 'Enter') {
-			executeSearch();
-		}
-	}
 </script>
-
-<form class="font-poppins" on:keydown={onKeyDown}>
-	<Search bind:text={search} />
-</form>
 
 <header class="font-poppins">
 	<RowsPerPage {handler} />
@@ -49,14 +24,12 @@
 			<Th {handler} orderBy={'donation_date'}>Date</Th>
 			<Th {handler} orderBy={'amount'}>Amount</Th>
 			<Th {handler} orderBy={'donor'}>Donor</Th>
-			<Th {handler} orderBy={'donee'}>Donee</Th>
 			<Th {handler} orderBy={'cause_area'}>Cause Area</Th>
 		</tr>
 		<tr>
 			<ThFilter {handler} filterBy={'donation_date'} />
 			<ThFilter {handler} filterBy={'amount'} />
 			<ThFilter {handler} filterBy={'donor'} />
-			<ThFilter {handler} filterBy={'donee'} />
 			<ThFilter {handler} filterBy={'cause_area'} />
 		</tr>
 	</thead>
@@ -65,19 +38,16 @@
 			<tr
 				class="ring-white ring-4 h-10 rounded-lg bg-rose-50 text-center font-poppins hover:bg-rose-200 hover:cursor-pointer"
 			>
-				<td on:click={() => (window.location.href = `/data/${row.donation_id}`)}
+				<td on:click={() => (window.location.href = `/donations/${row.donation_id}`)}
 					>{row.donation_date}</td
 				>
-				<td on:click={() => (window.location.href = `/data/${row.donation_id}`)}>{row.amount}</td>
-				<td
-					on:click={() =>
-						(window.location.href = `/data/organizations/${row.donor.replaceAll(' ', '-')}`)}
-					>{row.donor}</td
+				<td on:click={() => (window.location.href = `/donations/${row.donation_id}`)}
+					>{formatLargeNumber(row.amount)}</td
 				>
 				<td
 					on:click={() =>
-						(window.location.href = `/data/organizations/${row.donee.replaceAll(' ', '-')}`)}
-					>{row.donee}</td
+						(window.location.href = `/organizations/${row.donor.replaceAll(' ', '-')}`)}
+					>{row.donor}</td
 				>
 				<td>{row.cause_area}</td>
 			</tr>
