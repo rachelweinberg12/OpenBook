@@ -2,8 +2,12 @@
 	import type { PageData } from './$types';
 	import Search from './Search.svelte';
 	import { formatLargeNumber } from '$lib/utils';
-	import OrgCardDisplay from './OrgCardDisplay.svelte';
 	import Tr from '$lib/Tr.svelte';
+	/*
+	import OrgCardDisplay from './OrgCardDisplay.svelte';
+	
+	import TagDisplay from '$lib/TagDisplay.svelte';
+	*/
 
 	import { DataHandler } from '@vincjo/datatables';
 	import Th from '@vincjo/datatables/Th.svelte';
@@ -38,8 +42,10 @@
 </script>
 
 <div>
+	<!--
 	<OrgCardDisplay orgList={data.donors} />
 	<OrgCardDisplay orgList={data.recipients} />
+	-->
 
 	<div>
 		<form class="font-poppins" on:keydown={onKeyDown}>
@@ -57,14 +63,14 @@
 					<Th {handler} orderBy={'amount'}>Amount</Th>
 					<th class="border-b border-gray-200">Donor</th>
 					<th class="border-b border-gray-200">Recipient</th>
-					<Th {handler} orderBy={'cause_area'}>Cause Area</Th>
+					<Th {handler} orderBy={'cause_area_array'}>Cause Area</Th>
 				</tr>
 				<tr>
 					<ThFilter {handler} filterBy={'donation_date'} />
 					<ThFilter {handler} filterBy={'amount'} />
 					<ThFilter {handler} filterBy={'donor'} />
 					<ThFilter {handler} filterBy={'donee'} />
-					<ThFilter {handler} filterBy={'cause_area'} />
+					<ThFilter {handler} filterBy={'cause_area_array'} />
 				</tr>
 			</thead>
 			<tbody>
@@ -84,13 +90,9 @@
 						<td on:click={() => (window.location.href = `/orgs/${encodeURI(row.donee)}`)}
 							>{row.donee}</td
 						>
-						<td on:click={() => (window.location.href = `/donations/${row.donation_id}`)}
-							>{#if row.cause_area}
-								{row.cause_area}
-							{:else}
-								none
-							{/if}</td
-						>
+						<td on:click={() => (window.location.href = `/donations/${row.donation_id}`)}>
+							<!--<TagDisplay tagList={row.cause_area_array} />-->
+						</td>
 					</Tr>
 				{/each}
 			</tbody>

@@ -30,7 +30,7 @@
 			{:else}
 				<Th {handler} orderBy={'donee'}>Recipient</Th>
 			{/if}
-			<Th {handler} orderBy={'cause_area'}>Cause Area</Th>
+			<Th {handler} orderBy={'cause_area_array'}>Cause Area</Th>
 		</tr>
 		<tr>
 			<ThFilter {handler} filterBy={'donation_date'} />
@@ -40,7 +40,7 @@
 			{:else}
 				<ThFilter {handler} filterBy={'donee'} />
 			{/if}
-			<ThFilter {handler} filterBy={'cause_area'} />
+			<ThFilter {handler} filterBy={'cause_area_array'} />
 		</tr>
 	</thead>
 	<tbody>
@@ -62,7 +62,7 @@
 						>{row.donee}</td
 					>
 				{/if}
-				<td>{row.cause_area}</td>
+				<td>{row.cause_area_array}</td>
 			</Tr>
 		{/each}
 	</tbody>

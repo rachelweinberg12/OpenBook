@@ -83,5 +83,39 @@ export async function getRecipients() {
 	return data ?? [];
 }
 
+/*
+
+async function getCauseAreas() {
+	const { data, error } = await supabase.from('donationsea').select();
+	let causeAreas = [];
+	if (data) {
+		for (let i = 0; i < data.length; i++) {
+			let uniformCA = data[i].cause_area.replaceAll('|', '/');
+			if (data[i].cause_area == '\\N') {
+				causeAreas.push({ id: data[i].donation_id, cause_area: null });
+			} else {
+				causeAreas.push({ id: data[i].donation_id, cause_area: uniformCA.split('/') });
+			}
+		}
+		return causeAreas;
+	} else {
+		return [];
+	}
+}
+
+export async function fixCauseAreas() {
+	let causeAreas = await getCauseAreas();
+	for (let i = 0; i < causeAreas.length; i++) {
+		const { error } = await supabase
+			.from('donations')
+			.update({ cause_area_array: causeAreas[i].cause_area })
+			.eq('donation_id', causeAreas[i].id);
+		if (error) {
+			console.log(error);
+		}
+	}
+}
+*/
+
 export type Donee = Database[];
 type DoneesResponse = Awaited<ReturnType<typeof getDonees>>;

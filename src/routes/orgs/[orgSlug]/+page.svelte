@@ -13,7 +13,7 @@
 	{#if data.incomings.length > 0}
 		<OrgGrants grantList={data.incomings} incoming={true} />
 	{/if}
-	{#if data.incomings.length > 0}
+	{#if data.outgoings.length > 0}
 		<OrgGrants grantList={data.outgoings} incoming={false} />
 	{/if}
 	<div>This is where organization specifics will go.</div>

@@ -5,7 +5,6 @@ import { getOutgoings } from '$lib/db';
 
 export const load: PageServerLoad = async ({ params }) => {
 	let name = decodeURI(params.orgSlug);
-	console.log(name);
 	return {
 		name: name,
 		donee_data: await getOrg(name),
