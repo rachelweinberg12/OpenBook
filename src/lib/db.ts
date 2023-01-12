@@ -81,7 +81,7 @@ export async function fixAmounts() {
 */
 
 export async function getDonors() {
-	const { data, error } = await supabase.from('donors').select();
+	const { data, error } = await supabase.rpc('get_donors');
 	if (error) {
 		console.log(error);
 	}

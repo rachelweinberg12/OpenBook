@@ -39,7 +39,7 @@
 					on:click={() =>
 						(window.location.href = `/organizations/${row.name.replaceAll(' ', '-')}`)}
 				>
-					<td>{row.name}</td>
+					<td class="whitespace-normal w-72 h-20 p-3">{row.name}</td>
 					<td>{formatLargeNumber(row.total_recieved)}</td>
 				</tr>
 			{/each}
