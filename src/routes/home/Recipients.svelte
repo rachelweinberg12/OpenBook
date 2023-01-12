@@ -25,11 +25,11 @@
 		<thead>
 			<tr>
 				<th class="border-b border-gray-200">Name</th>
-				<Th {handler} orderBy={'total_recieved'}>Total Recieved</Th>
+				<Th {handler} orderBy={'total'}>Total Recieved</Th>
 			</tr>
 			<tr>
 				<ThFilter {handler} filterBy={'name'} />
-				<ThFilter {handler} filterBy={'total_recieved'} />
+				<ThFilter {handler} filterBy={'total'} />
 			</tr>
 		</thead>
 		<tbody>
@@ -40,7 +40,7 @@
 						(window.location.href = `/organizations/${row.name.replaceAll(' ', '-')}`)}
 				>
 					<td class="whitespace-normal w-72 h-20 p-3">{row.name}</td>
-					<td>{formatLargeNumber(row.total_recieved)}</td>
+					<td>{formatLargeNumber(row.total)}</td>
 				</tr>
 			{/each}
 		</tbody>

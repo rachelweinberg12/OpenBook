@@ -4,6 +4,8 @@
 	import Donors from './Donors.svelte';
 	import Recipients from './Recipients.svelte';
 	import { formatLargeNumber } from '$lib/utils';
+	import OrgCard from './OrgCard.svelte';
+	import OrgCardDisplay from './OrgCardDisplay.svelte';
 
 	import { DataHandler } from '@vincjo/datatables';
 	import Th from '@vincjo/datatables/Th.svelte';
@@ -38,7 +40,15 @@
 </script>
 
 <div>
+	<OrgCardDisplay orgList={data.donors} />
+	<OrgCardDisplay orgList={data.recipients} />
+
 	<div class="flex gap-x-40 justify-center m-10">
+		<OrgCard
+			name={data.donors[0].name}
+			total={data.donors[0].total}
+			cause_areas={data.donors[0].cause_areas}
+		/>
 		<Donors {data} />
 		<Recipients {data} />
 	</div>
@@ -92,7 +102,11 @@
 							>{row.donee}</td
 						>
 						<td on:click={() => (window.location.href = `/donations/${row.donation_id}`)}
-							>{row.cause_area}</td
+							>{#if row.cause_area}
+								{row.cause_area}
+							{:else}
+								none
+							{/if}</td
 						>
 					</tr>
 				{/each}
