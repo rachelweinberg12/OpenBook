@@ -4,7 +4,7 @@ import { getIncomings } from '$lib/db';
 import { getOutgoings } from '$lib/db';
 
 export const load: PageServerLoad = async ({ params }) => {
-	let name = params.orgSlug.replaceAll('-', ' ');
+	let name = decodeURI(params.orgSlug);
 	console.log(name);
 	return {
 		name: name,

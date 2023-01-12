@@ -34,14 +34,10 @@
 		</thead>
 		<tbody>
 			{#each $rows as row}
-				<tr
-					class="ring-white ring-4 h-10 rounded-lg bg-rose-50 text-center font-poppins hover:bg-rose-200 hover:cursor-pointer"
-					on:click={() =>
-						(window.location.href = `/organizations/${row.name.replaceAll(' ', '-')}`)}
-				>
+				<Tr on:click={() => (window.location.href = `/organizations/${encodeURI(row.name)}`)}>
 					<td class="whitespace-normal w-72 h-20 p-3">{row.name}</td>
 					<td>{formatLargeNumber(row.total)}</td>
-				</tr>
+				</Tr>
 			{/each}
 		</tbody>
 	</table>

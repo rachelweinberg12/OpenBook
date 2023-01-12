@@ -1,11 +1,9 @@
 <script lang="ts">
 	import type { PageData } from './$types';
 	import Search from './Search.svelte';
-	import Donors from './Donors.svelte';
-	import Recipients from './Recipients.svelte';
 	import { formatLargeNumber } from '$lib/utils';
-	import OrgCard from './OrgCard.svelte';
 	import OrgCardDisplay from './OrgCardDisplay.svelte';
+	import Tr from '$lib/Tr.svelte';
 
 	import { DataHandler } from '@vincjo/datatables';
 	import Th from '@vincjo/datatables/Th.svelte';
@@ -43,16 +41,6 @@
 	<OrgCardDisplay orgList={data.donors} />
 	<OrgCardDisplay orgList={data.recipients} />
 
-	<div class="flex gap-x-40 justify-center m-10">
-		<OrgCard
-			name={data.donors[0].name}
-			total={data.donors[0].total}
-			cause_areas={data.donors[0].cause_areas}
-		/>
-		<Donors {data} />
-		<Recipients {data} />
-	</div>
-
 	<div>
 		<form class="font-poppins" on:keydown={onKeyDown}>
 			<Search bind:text={search} />
@@ -81,9 +69,7 @@
 			</thead>
 			<tbody>
 				{#each $rows as row}
-					<tr
-						class="ring-white ring-4 h-12 rounded-lg bg-rose-50 text-center font-poppins hover:bg-rose-200 hover:cursor-pointer"
-					>
+					<Tr>
 						<td on:click={() => (window.location.href = `/donations/${row.donation_id}`)}
 							>{row.donation_date}</td
 						>
@@ -92,13 +78,10 @@
 							class="text-right px-5">{formatLargeNumber(row.amount)}</td
 						>
 						<td
-							on:click={() =>
-								(window.location.href = `/organizations/${row.donor.replaceAll(' ', '-')}`)}
+							on:click={() => (window.location.href = `/orgs/${encodeURI(row.donor)}`)}
 							class="px-5">{row.donor}</td
 						>
-						<td
-							on:click={() =>
-								(window.location.href = `/organizations/${row.donee.replaceAll(' ', '-')}`)}
+						<td on:click={() => (window.location.href = `/orgs/${encodeURI(row.donee)}`)}
 							>{row.donee}</td
 						>
 						<td on:click={() => (window.location.href = `/donations/${row.donation_id}`)}
@@ -108,7 +91,7 @@
 								none
 							{/if}</td
 						>
-					</tr>
+					</Tr>
 				{/each}
 			</tbody>
 		</table>

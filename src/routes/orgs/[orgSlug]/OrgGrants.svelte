@@ -1,7 +1,6 @@
 <script lang="ts">
-	import type { PageData } from './$types';
-	export let data: PageData;
 	import { formatLargeNumber } from '$lib/utils';
+	import Tr from '$lib/Tr.svelte';
 
 	import { DataHandler } from '@vincjo/datatables';
 	import Th from '@vincjo/datatables/Th.svelte';
@@ -10,7 +9,10 @@
 	import RowCount from '@vincjo/datatables/RowCount.svelte';
 	import Pagination from '@vincjo/datatables/Pagination.svelte';
 
-	let handler = new DataHandler(data.outgoings, { rowsPerPage: 20 });
+	export let incoming: boolean;
+	export let grantList: [];
+
+	let handler = new DataHandler(grantList, { rowsPerPage: 20 });
 	$: rows = handler.getRows();
 </script>
 
@@ -23,34 +25,45 @@
 		<tr>
 			<Th {handler} orderBy={'donation_date'}>Date</Th>
 			<Th {handler} orderBy={'amount'}>Amount</Th>
-			<Th {handler} orderBy={'donee'}>Recipient</Th>
+			{#if incoming}
+				<Th {handler} orderBy={'donor'}>Donor</Th>
+			{:else}
+				<Th {handler} orderBy={'donee'}>Recipient</Th>
+			{/if}
 			<Th {handler} orderBy={'cause_area'}>Cause Area</Th>
 		</tr>
 		<tr>
 			<ThFilter {handler} filterBy={'donation_date'} />
 			<ThFilter {handler} filterBy={'amount'} />
-			<ThFilter {handler} filterBy={'donee'} />
+			{#if incoming}
+				<ThFilter {handler} filterBy={'donor'} />
+			{:else}
+				<ThFilter {handler} filterBy={'donee'} />
+			{/if}
 			<ThFilter {handler} filterBy={'cause_area'} />
 		</tr>
 	</thead>
 	<tbody>
 		{#each $rows as row}
-			<tr
-				class="ring-white ring-4 h-10 rounded-lg bg-rose-50 text-center font-poppins hover:bg-rose-200 hover:cursor-pointer"
-			>
+			<Tr>
 				<td on:click={() => (window.location.href = `/donations/${row.donation_id}`)}
 					>{row.donation_date}</td
 				>
-				<td on:click={() => (window.location.href = `/donations/${row.donation_id}`)}
-					>{formatLargeNumber(row.amount)}</td
-				>
 				<td
-					on:click={() =>
-						(window.location.href = `/organizations/${row.donee.replaceAll(' ', '-')}`)}
-					>{row.donee}</td
+					on:click={() => (window.location.href = `/donations/${row.donation_id}`)}
+					class="text-right px-5">{formatLargeNumber(row.amount)}</td
 				>
+				{#if incoming}
+					<td on:click={() => (window.location.href = `/orgs/${encodeURI(row.donor)}`)}
+						>{row.donor}</td
+					>
+				{:else}
+					<td on:click={() => (window.location.href = `/orgs/${encodeURI(row.donee)}`)}
+						>{row.donee}</td
+					>
+				{/if}
 				<td>{row.cause_area}</td>
-			</tr>
+			</Tr>
 		{/each}
 	</tbody>
 </table>
