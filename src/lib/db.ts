@@ -100,6 +100,7 @@ export async function getRecipients() {
 	return data ?? [];
 }
 
+/*
 async function getCauseAreas() {
 	const { data, error } = await supabase.from('donationsea').select();
 	let causeAreas = [];
@@ -131,6 +132,7 @@ export async function fixCauseAreas() {
 		console.log('updated', causeAreas[i].id);
 	}
 }
+*/
 
 export type Donee = Database[];
 type DoneesResponse = Awaited<ReturnType<typeof getDonees>>;

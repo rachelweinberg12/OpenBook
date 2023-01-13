@@ -19,9 +19,6 @@
 	import { searchDonations } from '$lib/db';
 	export let data: PageData;
 
-	import { fixCauseAreas } from '$lib/db';
-	fixCauseAreas();
-
 	let search: string = '';
 
 	let handler = new DataHandler(data.donations, { rowsPerPage: 30 });
