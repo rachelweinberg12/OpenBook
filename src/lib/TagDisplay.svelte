@@ -3,7 +3,7 @@
 	export let tagList: [];
 </script>
 
-<div class="flex justify-center">
+<div class="flex justify-center max-w-sm">
 	{#if tagList}
 		{#each tagList as tag}
 			<Tag>{tag}</Tag>

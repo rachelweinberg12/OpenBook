@@ -1,7 +1,6 @@
 <script lang="ts">
 	export let name: string;
 	export let total: number;
-	export let cause_areas: string[];
 	import { formatLargeNumber } from '$lib/utils';
 </script>
 
@@ -11,5 +10,4 @@
 >
 	<h1 class="text-xl">{name}</h1>
 	<p>Total: {formatLargeNumber(total)}</p>
-	<p>Cause Areas: {cause_areas}</p>
 </div>

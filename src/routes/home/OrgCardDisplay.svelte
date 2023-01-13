@@ -28,7 +28,7 @@
 <div class="flex mx-40">
 	<button on:click={() => prev()}>Prev</button>
 	{#each orgList.slice(start, end) as org}
-		<OrgCard name={org.name} total={org.total} cause_areas={org.cause_areas} />
+		<OrgCard name={org.name} total={org.total} />
 	{/each}
 	<button on:click={() => next()}>Next</button>
 </div>

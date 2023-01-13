@@ -20,7 +20,7 @@ export async function getDonations() {
 		.select()
 		.order('donation_date', { ascending: false });
 	if (error) {
-		console.log(error);
+		console.log('error in getDonations', error);
 	}
 	return data ?? [];
 }
@@ -50,10 +50,9 @@ export async function getOrg(name: string) {
 }
 
 export async function getIncomings(name: string) {
-	console.log('hello?');
 	const { data, error } = await supabase.from('donations').select().eq('donee', name);
 	if (error) {
-		console.log(error);
+		console.log('error in getIncomings', error);
 	}
 	return data ?? [];
 }
@@ -61,7 +60,7 @@ export async function getIncomings(name: string) {
 export async function getOutgoings(name: string) {
 	const { data, error } = await supabase.from('donations').select().eq('donor', name);
 	if (error) {
-		console.log(error);
+		console.log('error in getOutgoings', error);
 	}
 	return data ?? [];
 }
@@ -69,20 +68,37 @@ export async function getOutgoings(name: string) {
 export async function getDonors() {
 	const { data, error } = await supabase.rpc('get_donors');
 	if (error) {
-		console.log(error);
+		console.log('error in getDonors', error);
 	}
 	return data ?? [];
 }
+
+/* Client side versoin of getDonors
+export async function cs_getDonors() {
+	const { data, error } = await supabase
+	.from('donations')
+	.select()
+	.order('donor', { ascending: false });
+	if (error) {
+		console.log(error);
+	}
+	let donors = [];
+	let i = 0;
+	while (i < data.length){
+
+	}
+
+	return data ?? [];
+}
+*/
 
 export async function getRecipients() {
 	const { data, error } = await supabase.rpc('get_recipients');
 	if (error) {
-		console.log(error);
+		console.log('error in getRecipients', error);
 	}
 	return data ?? [];
 }
-
-/*
 
 async function getCauseAreas() {
 	const { data, error } = await supabase.from('donationsea').select();
@@ -112,9 +128,9 @@ export async function fixCauseAreas() {
 		if (error) {
 			console.log(error);
 		}
+		console.log('updated', causeAreas[i].id);
 	}
 }
-*/
 
 export type Donee = Database[];
 type DoneesResponse = Awaited<ReturnType<typeof getDonees>>;
