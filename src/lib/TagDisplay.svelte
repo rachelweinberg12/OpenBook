@@ -6,7 +6,7 @@
 <div class="flex justify-center max-w-sm">
 	{#if tagList}
 		{#each tagList as tag}
-			<Tag>{tag}</Tag>
+			<Tag tag={tag}></Tag>
 		{/each}
 	{:else}
 		<i>none</i>
