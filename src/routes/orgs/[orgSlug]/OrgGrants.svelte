@@ -10,6 +10,7 @@
 	import RowsPerPage from '@vincjo/datatables/RowsPerPage.svelte';
 	import RowCount from '@vincjo/datatables/RowCount.svelte';
 	import Pagination from '@vincjo/datatables/Pagination.svelte';
+	import Search from '@vincjo/datatables/Search.svelte';
 
 	export let incoming: boolean;
 	export let grantList: [];
@@ -18,51 +19,58 @@
 	$: rows = handler.getRows();
 </script>
 
-<header class="font-poppins">
-	<RowsPerPage {handler} />
-</header>
+<div>
+	<header class="font-poppins">
+		{#if grantList.length > 20}
+			<Search {handler} />
+			<RowsPerPage {handler} />
+		{/if}
+	</header>
 
-<table class="font-poppins">
-	<thead>
-		<tr>
-			<Th {handler} orderBy={'donation_date'}>Date</Th>
-			<Th {handler} orderBy={'amount'}>Amount</Th>
-			{#if incoming}
-				<Th {handler} orderBy={'donor'}>Donor</Th>
-			{:else}
-				<Th {handler} orderBy={'donee'}>Recipient</Th>
-			{/if}
-			<th class="border-b border-gray-200">Cause Area</th>
-		</tr>
-	</thead>
-	<tbody>
-		{#each $rows as row}
-			<Tr>
-				<td on:click={() => (window.location.href = `/donations/${row.donation_id}`)}
-					>{formatDate(row.donation_date)}</td
-				>
-				<td
-					on:click={() => (window.location.href = `/donations/${row.donation_id}`)}
-					class="text-right px-5">{formatLargeNumber(row.amount)}</td
-				>
+	<table class="font-poppins">
+		<thead>
+			<tr>
+				<Th {handler} orderBy={'donation_date'}>Date</Th>
+				<Th {handler} orderBy={'amount'}>Amount</Th>
 				{#if incoming}
-					<TdLink on:click={() => (window.location.href = `/orgs/${encodeURI(row.donor)}`)}
-						>{row.donor}</TdLink
-					>
+					<Th {handler} orderBy={'donor'}>Donor</Th>
 				{:else}
-					<TdLink on:click={() => (window.location.href = `/orgs/${encodeURI(row.donee)}`)}
-						>{row.donee}</TdLink
-					>
+					<Th {handler} orderBy={'donee'}>Recipient</Th>
 				{/if}
-				<td on:click={() => (window.location.href = `/donations/${row.donation_id}`)}>
-					<TagDisplay tagList={row.cause_area_array} />
-				</td>
-			</Tr>
-		{/each}
-	</tbody>
-</table>
+				<th class="border-b border-gray-200">Cause Area</th>
+			</tr>
+		</thead>
+		<tbody>
+			{#each $rows as row}
+				<Tr>
+					<td on:click={() => (window.location.href = `/donations/${row.donation_id}`)}
+						>{formatDate(row.donation_date)}</td
+					>
+					<td
+						on:click={() => (window.location.href = `/donations/${row.donation_id}`)}
+						class="text-right px-5">{formatLargeNumber(row.amount)}</td
+					>
+					{#if incoming}
+						<TdLink on:click={() => (window.location.href = `/orgs/${encodeURI(row.donor)}`)}
+							>{row.donor}</TdLink
+						>
+					{:else}
+						<TdLink on:click={() => (window.location.href = `/orgs/${encodeURI(row.donee)}`)}
+							>{row.donee}</TdLink
+						>
+					{/if}
+					<td on:click={() => (window.location.href = `/donations/${row.donation_id}`)}>
+						<TagDisplay tagList={row.cause_area_array} />
+					</td>
+				</Tr>
+			{/each}
+		</tbody>
+	</table>
 
-<footer class="font-poppins">
-	<RowCount {handler} />
-	<Pagination {handler} />
-</footer>
+	<footer class="font-poppins">
+		<RowCount {handler} />
+		{#if grantList.length > 20}
+			<Pagination {handler} />
+		{/if}
+	</footer>
+</div>

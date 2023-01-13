@@ -4,7 +4,7 @@ import { getIncomings } from '$lib/db';
 import { getOutgoings } from '$lib/db';
 
 export const load: PageServerLoad = async ({ params }) => {
-	let name = decodeURI(params.orgSlug);
+	let name = decodeURI(params.orgSlug).replaceAll('^', '/');
 	return {
 		name: name,
 		donee_data: await getOrg(name),

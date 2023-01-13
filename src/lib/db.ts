@@ -22,14 +22,16 @@ export async function getDonations() {
 	if (error) {
 		console.log('error in getDonations', error);
 	}
+
 	return data ?? [];
 }
 
 export async function searchDonations(search: string) {
-	const { data, error } = await supabase.rpc('search_donations', { keyword: search });
+	const { data, error } = await supabase.rpc('search', { keyword: search });
 	if (error) {
 		console.log(error);
 	}
+	console.log(data);
 	return data ?? [];
 }
 
@@ -50,7 +52,11 @@ export async function getOrg(name: string) {
 }
 
 export async function getIncomings(name: string) {
-	const { data, error } = await supabase.from('donations').select().eq('donee', name);
+	const { data, error } = await supabase
+		.from('donations')
+		.select()
+		.eq('donee', name)
+		.order('donation_date', { ascending: false });
 	if (error) {
 		console.log('error in getIncomings', error);
 	}
@@ -58,7 +64,11 @@ export async function getIncomings(name: string) {
 }
 
 export async function getOutgoings(name: string) {
-	const { data, error } = await supabase.from('donations').select().eq('donor', name);
+	const { data, error } = await supabase
+		.from('donations')
+		.select()
+		.eq('donor', name)
+		.order('donation_date', { ascending: false });
 	if (error) {
 		console.log('error in getOutgoings', error);
 	}
@@ -73,22 +83,27 @@ export async function getDonors() {
 	return data ?? [];
 }
 
-/* Client side versoin of getDonors
-export async function cs_getDonors() {
-	const { data, error } = await supabase
-	.from('donations')
-	.select()
-	.order('donor', { ascending: false });
-	if (error) {
-		console.log(error);
+/*
+export function cs_getDonors(data: []) {
+		if (data) {
+		let donors = new Map();
+		for (let i = 0; i < data.length; i++) {
+			if (donors.has(data[i].donor)) {
+				donors.set(data[i].donor, {
+					cause_areas: donors.get(data[i].donor).cause_areas,
+					total: donors.get(data[i].donor).total + data[i].amount
+				});
+			} else {
+				donors.set(data[i].donor, {
+					cause_areas: data[i].cause_area_array,
+					total: data[i].amount
+				});
+			}
+		}
+		return { data, donors };
 	}
-	let donors = [];
-	let i = 0;
-	while (i < data.length){
 
-	}
-
-	return data ?? [];
+	return donors;
 }
 */
 
