@@ -22,7 +22,6 @@ export async function getDonations() {
 	if (error) {
 		console.log(error);
 	}
-	console.log(data);
 	return data ?? [];
 }
 

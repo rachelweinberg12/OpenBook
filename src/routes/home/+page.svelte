@@ -3,11 +3,9 @@
 	import Search from './Search.svelte';
 	import { formatLargeNumber } from '$lib/utils';
 	import Tr from '$lib/Tr.svelte';
-	/*
+
 	import OrgCardDisplay from './OrgCardDisplay.svelte';
-	
 	import TagDisplay from '$lib/TagDisplay.svelte';
-	*/
 
 	import { DataHandler } from '@vincjo/datatables';
 	import Th from '@vincjo/datatables/Th.svelte';
@@ -41,11 +39,11 @@
 	}
 </script>
 
+<p>this works</p>
+
 <div>
-	<!--
 	<OrgCardDisplay orgList={data.donors} />
 	<OrgCardDisplay orgList={data.recipients} />
-	-->
 
 	<div>
 		<form class="font-poppins" on:keydown={onKeyDown}>
@@ -73,6 +71,7 @@
 					<ThFilter {handler} filterBy={'cause_area_array'} />
 				</tr>
 			</thead>
+
 			<tbody>
 				{#each $rows as row}
 					<Tr>
@@ -91,7 +90,7 @@
 							>{row.donee}</td
 						>
 						<td on:click={() => (window.location.href = `/donations/${row.donation_id}`)}>
-							<!--<TagDisplay tagList={row.cause_area_array} />-->
+							<TagDisplay tagList={row.cause_area_array} />
 						</td>
 					</Tr>
 				{/each}
