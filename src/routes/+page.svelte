@@ -41,9 +41,9 @@
 	}
 </script>
 
-<div class="font-poppins text-lg">
-	<OrgCardDisplay orgList={data.donors} />
-	<OrgCardDisplay orgList={data.recipients} />
+<div class="font-poppins text-xl">
+	<OrgCardDisplay orgList={data.donors} title="Top Donors" />
+	<OrgCardDisplay orgList={data.recipients} title="Top Recipients" />
 
 	<div class="flex justify-center my-10">
 		<div>
