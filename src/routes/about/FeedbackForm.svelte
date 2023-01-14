@@ -25,7 +25,11 @@
 		<br />
 		<div class="flex justify-center">
 			<button
-				on:click|preventDefault={() => sendFeedback(feedback, email)}
+				on:click|preventDefault={() => {
+					sendFeedback(feedback, email);
+					feedback = '';
+					email = '';
+				}}
 				class="bg-violet-200 w-36 rounded-md shadow-sm hover:cursor-pointer hover:shadow-xl"
 				>Submit</button
 			>
