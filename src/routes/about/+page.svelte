@@ -3,7 +3,7 @@
 </script>
 
 <div class="flex justify-center my-32 text-2xl">
-	<div class="prose-xl">
+	<div class="prose">
 		<h3 id="what-is-this-">What is this?</h3>
 		<p>
 			GoodLedger is a database of Effective Altruism grants. Find out how much funding your favorite
