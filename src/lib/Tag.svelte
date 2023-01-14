@@ -1,12 +1,12 @@
 <script lang="ts">
 	export let tag: string;
 	// Rewrite long cause areas
-	tag =
+	let text =
 		{
 			'Biosecurity and pandemic preparedness': 'Biosecurity'
 		}[tag] ?? tag;
 
-	tag = tag.toLowerCase();
+	text = text.toLowerCase();
 
 	const color =
 		{
@@ -21,12 +21,12 @@
 			'vaccine development': 'bg-pink-100',
 			disinfection: 'bg-gray-100',
 			'effective altruism': 'bg-rose-100'
-		}[tag] ?? 'bg-slate-100';
+		}[text] ?? 'bg-slate-100';
 </script>
 
 <p
 	class={`font-thin rounded-2xl h-8 max-w-xxs px-2 mx-1 truncate overflow-hidden ${color} shadow-md`}
-	title={tag}
+	title={text}
 >
-	{tag}
+	{text}
 </p>
