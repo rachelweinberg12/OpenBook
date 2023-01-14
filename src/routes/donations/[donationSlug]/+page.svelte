@@ -17,7 +17,7 @@
 			>{donation.donee}</a
 		>
 	</h1>
-	<div class="flex justify-center">
+	<div class="flex justify-center mb-10">
 		<div class="flex flex-col gap-6 text-2xl w-6/12">
 			{#if donation.donation_date}
 				<div class="flex flex-row gap-5">

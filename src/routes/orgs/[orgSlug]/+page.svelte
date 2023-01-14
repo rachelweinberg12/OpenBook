@@ -67,7 +67,7 @@
 		{#if data.outgoings.length > 0}
 			<div>
 				<h3 class="text-4xl my-5">
-					Outgoing Grants | Total Recieved: ${formatLargeNumber(sum_grants(data.outgoings))}
+					Outgoing Grants | Total Sent: ${formatLargeNumber(sum_grants(data.outgoings))}
 				</h3>
 				<OrgGrants grantList={data.outgoings} incoming={false} />
 			</div>

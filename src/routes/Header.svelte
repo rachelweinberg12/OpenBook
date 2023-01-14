@@ -19,15 +19,16 @@
 			<path d="M0,0 L0,3 C0.5,3 0.5,3 1,2 L2,0 Z" />
 		</svg>
         -->
-			<ul class="flex justify-center gap-x-28">
+			<ul class="flex justify-center gap-x-12">
 				<li
-					class="mx-6 mt-10 mb-9 bg-violet-200 rounded-3xl shadow-sm hover:cursor-pointer hover:shadow-lg px-4 py-2 w-40 text-center"
+					class="mt-10 mb-9 text-violet-50 text-center hover:text-opacity-50"
 					aria-current={$page.url.pathname === '/'}
 				>
-					<a href="/">data</a>
+					<a href="/">home</a>
 				</li>
+				<li class=" mt-10 mb-9 text-violet-50">|</li>
 				<li
-					class="mx-6 mt-10 mb-9 bg-violet-200 rounded-3xl shadow-sm hover:cursor-pointer hover:shadow-lg px-4 py-2 w-40 text-center"
+					class=" mt-10 mb-9 text-violet-50 text-center hover:text-opacity-50"
 					aria-current={$page.url.pathname === '/about'}
 				>
 					<a href="/about">about</a>

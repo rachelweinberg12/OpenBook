@@ -10,7 +10,6 @@
 	import RowsPerPage from '@vincjo/datatables/RowsPerPage.svelte';
 	import RowCount from '@vincjo/datatables/RowCount.svelte';
 	import Pagination from '@vincjo/datatables/Pagination.svelte';
-	import Search from '@vincjo/datatables/Search.svelte';
 
 	export let incoming: boolean;
 	export let grantList: [];
@@ -23,7 +22,6 @@
 	<div class="font-poppins text-2xl">
 		<header class="font-poppins relative">
 			{#if grantList.length > 10}
-				<div class="absolute left-0"><Search {handler} /></div>
 				<div class="pt-7"><RowsPerPage {handler} /></div>
 			{/if}
 		</header>

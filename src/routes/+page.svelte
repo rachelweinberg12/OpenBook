@@ -42,9 +42,6 @@
 </script>
 
 <div class="font-poppins text-2xl">
-	<OrgCardDisplay orgList={data.donors} title="Top Donors" />
-	<OrgCardDisplay orgList={data.recipients} title="Top Recipients" />
-
 	<div class="flex justify-center my-10">
 		<div>
 			<form class="font-poppins" on:keydown={onKeyDown}>
@@ -100,4 +97,7 @@
 			</footer>
 		</div>
 	</div>
+
+	<OrgCardDisplay orgList={data.donors} title="Top Donors" />
+	<OrgCardDisplay orgList={data.recipients} title="Top Recipients" />
 </div>
