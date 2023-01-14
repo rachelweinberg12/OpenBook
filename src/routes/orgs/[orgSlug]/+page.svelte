@@ -5,8 +5,6 @@
 	import { formatLargeNumber } from '$lib/utils';
 	export let data: PageData;
 	const donee_data = data.donee_data[0];
-	console.log(data);
-	console.log(donee_data);
 	function sum_grants(grantList: []) {
 		let total = 0;
 		for (let i = 0; i < grantList.length; i++) {

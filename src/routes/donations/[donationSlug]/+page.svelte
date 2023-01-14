@@ -4,7 +4,6 @@
 	import TagDisplay from '$lib/TagDisplay.svelte';
 	export let data: PageData;
 	const donation = data.donation[0];
-	console.log(donation);
 </script>
 
 <body class="font-poppinsmy-16">
