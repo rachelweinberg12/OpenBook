@@ -1,9 +1,9 @@
 <script lang="ts">
-	import Widget from '$lib/Widget.svelte';
+	import FeedbackForm from './FeedbackForm.svelte';
 </script>
 
 <div class="flex justify-center my-32 text-2xl">
-	<div class="prose">
+	<div class="prose-xl">
 		<h3 id="what-is-this-">What is this?</h3>
 		<p>
 			GoodLedger is a database of Effective Altruism grants. Find out how much funding your favorite
@@ -28,5 +28,7 @@
 		<h3 id="who-built-this-">Who built this?</h3>
 		<p>Rachel Weinberg, with help from Austin Chen.</p>
 		<p>If you have questions or feedback, reach out to rachel.weinberg12@gmail.com!</p>
+		<hr class="h-0.5 bg-gray-500" />
+		<FeedbackForm />
 	</div>
 </div>

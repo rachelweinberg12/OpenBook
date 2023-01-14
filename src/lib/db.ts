@@ -149,5 +149,12 @@ export async function fixCauseAreas() {
 }
 */
 
+export async function sendFeedback(feedback: string, email: string) {
+	const { error } = await supabase.from('feedback').insert({ feedback: feedback, email: email });
+	if (error) {
+		console.log(error);
+	}
+}
+
 export type Donee = Database[];
 type DoneesResponse = Awaited<ReturnType<typeof getDonees>>;
