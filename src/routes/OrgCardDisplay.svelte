@@ -45,7 +45,7 @@
 			/>
 		</svg>
 		{#each orgList.slice(start, end) as org, i}
-			<OrgCard name={org.name} total={org.total} rank={i + 1} />
+			<OrgCard name={org.name} total={org.total} rank={start + i + 1} />
 		{/each}
 		<svg
 			xmlns="http://www.w3.org/2000/svg"
