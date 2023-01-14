@@ -15,62 +15,64 @@
 	export let incoming: boolean;
 	export let grantList: [];
 
-	let handler = new DataHandler(grantList, { rowsPerPage: 20 });
+	let handler = new DataHandler(grantList, { rowsPerPage: 10 });
 	$: rows = handler.getRows();
 </script>
 
-<div>
-	<header class="font-poppins">
-		{#if grantList.length > 20}
-			<Search {handler} />
-			<RowsPerPage {handler} />
-		{/if}
-	</header>
+<div class="flex justify-center">
+	<div class="font-poppins text-2xl">
+		<header class="font-poppins relative">
+			{#if grantList.length > 10}
+				<div class="absolute left-0"><Search {handler} /></div>
+				<div class="pt-7"><RowsPerPage {handler} /></div>
+			{/if}
+		</header>
 
-	<table class="font-poppins">
-		<thead>
-			<tr>
-				<Th {handler} orderBy={'donation_date'}>Date</Th>
-				<Th {handler} orderBy={'amount'}>Amount</Th>
-				{#if incoming}
-					<Th {handler} orderBy={'donor'}>Donor</Th>
-				{:else}
-					<Th {handler} orderBy={'donee'}>Recipient</Th>
-				{/if}
-				<th class="border-b border-gray-200">Cause Area</th>
-			</tr>
-		</thead>
-		<tbody>
-			{#each $rows as row}
-				<Tr>
-					<td on:click={() => (window.location.href = `/donations/${row.donation_id}`)}
-						>{formatDate(row.donation_date)}</td
-					>
-					<td
-						on:click={() => (window.location.href = `/donations/${row.donation_id}`)}
-						class="text-right px-5">{formatLargeNumber(row.amount)}</td
-					>
+		<table class="font-poppins">
+			<thead>
+				<tr>
+					<Th {handler} orderBy={'donation_date'}>Date</Th>
+					<Th {handler} orderBy={'amount'}>Amount</Th>
 					{#if incoming}
-						<TdLink on:click={() => (window.location.href = `/orgs/${encodeURI(row.donor)}`)}
-							>{row.donor}</TdLink
-						>
+						<Th {handler} orderBy={'donor'}>Donor</Th>
 					{:else}
-						<TdLink on:click={() => (window.location.href = `/orgs/${encodeURI(row.donee)}`)}
-							>{row.donee}</TdLink
-						>
+						<Th {handler} orderBy={'donee'}>Recipient</Th>
 					{/if}
-					<td on:click={() => (window.location.href = `/donations/${row.donation_id}`)}>
-						<TagDisplay tagList={row.cause_area_array} />
-					</td>
-				</Tr>
-			{/each}
-		</tbody>
-	</table>
+					<th class="border-b border-gray-200">Cause Area</th>
+				</tr>
+			</thead>
+			<tbody>
+				{#each $rows as row}
+					<Tr>
+						<td on:click={() => (window.location.href = `/donations/${row.donation_id}`)}
+							>{formatDate(row.donation_date)}</td
+						>
+						<td
+							on:click={() => (window.location.href = `/donations/${row.donation_id}`)}
+							class="text-right px-5">{formatLargeNumber(row.amount)}</td
+						>
+						{#if incoming}
+							<TdLink on:click={() => (window.location.href = `/orgs/${encodeURI(row.donor)}`)}
+								>{row.donor}</TdLink
+							>
+						{:else}
+							<TdLink on:click={() => (window.location.href = `/orgs/${encodeURI(row.donee)}`)}
+								>{row.donee}</TdLink
+							>
+						{/if}
+						<td on:click={() => (window.location.href = `/donations/${row.donation_id}`)}>
+							<TagDisplay tagList={row.cause_area_array} />
+						</td>
+					</Tr>
+				{/each}
+			</tbody>
+		</table>
 
-	<footer class="font-poppins">
-		<RowCount {handler} />
-		{#if grantList.length > 20}
-			<Pagination {handler} />
-		{/if}
-	</footer>
+		<footer class="font-poppins">
+			<RowCount {handler} />
+			{#if grantList.length > 10}
+				<Pagination {handler} />
+			{/if}
+		</footer>
+	</div>
 </div>

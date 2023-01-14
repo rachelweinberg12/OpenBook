@@ -3,10 +3,10 @@
 	export let tagList: [];
 </script>
 
-<div class="flex justify-center max-w-sm">
+<div class="flex justify-center text-xl">
 	{#if tagList}
 		{#each tagList as tag}
-			<Tag tag={tag}></Tag>
+			<Tag {tag} />
 		{/each}
 	{:else}
 		<i>none</i>

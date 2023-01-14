@@ -7,7 +7,8 @@ module.exports = {
 				poppins: ['poppins', 'sans-serif']
 			},
 			maxWidth: {
-				xxs: '10rem'
+				xxs: '10rem',
+				xs: '30rem'
 			}
 		}
 	},

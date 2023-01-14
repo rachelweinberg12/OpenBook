@@ -21,16 +21,16 @@
 
 	let search: string = '';
 
-	let handler = new DataHandler(data.donations, { rowsPerPage: 30 });
+	let handler = new DataHandler(data.donations, { rowsPerPage: 20 });
 	$: rows = handler.getRows();
 
 	function executeSearch() {
 		if (search.length > 0) {
 			searchDonations(search.replaceAll(' ', '<->')).then(
-				(res) => (handler = new DataHandler(res, { rowsPerPage: 30 }))
+				(res) => (handler = new DataHandler(res, { rowsPerPage: 20 }))
 			);
 		} else {
-			handler = new DataHandler(data.donations, { rowsPerPage: 30 });
+			handler = new DataHandler(data.donations, { rowsPerPage: 20 });
 		}
 	}
 
@@ -41,7 +41,7 @@
 	}
 </script>
 
-<div class="font-poppins text-xl">
+<div class="font-poppins text-2xl">
 	<OrgCardDisplay orgList={data.donors} title="Top Donors" />
 	<OrgCardDisplay orgList={data.recipients} title="Top Recipients" />
 
@@ -94,7 +94,7 @@
 				</tbody>
 			</table>
 
-			<footer class="font-poppins">
+			<footer>
 				<RowCount {handler} />
 				<Pagination {handler} />
 			</footer>
