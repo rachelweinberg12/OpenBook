@@ -25,7 +25,7 @@
 </script>
 
 <p
-	class={`font-thin rounded-2xl h-8 max-w-xxs px-2 mx-1 truncate overflow-hidden ${color} shadow-md`}
+	class={`font-thin rounded-2xl h-6 max-w-xxs px-2 mx-1 truncate overflow-hidden ${color} shadow-md`}
 	title={text}
 >
 	{text}

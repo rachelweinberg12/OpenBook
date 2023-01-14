@@ -2,9 +2,9 @@
 	import { page } from '$app/stores';
 </script>
 
-<header class="bg-violet-400 shadow-lg mb-5 w-full">
-	<h1 class="text-6xl font-bold text-white p-4 m-3 absolute">GoodLedger</h1>
-	<div class="flex justify-center font-poppins text-3xl">
+<header class="bg-violet-400 shadow-lg w-full">
+	<h1 class="text-5xl font-bold text-white p-2 m-3 absolute">GoodLedger</h1>
+	<div class="flex justify-center font-poppins text-2xl">
 		<nav>
 			<!--
 		<svg viewBox="0 0 2 3" aria-hidden="true">
@@ -21,14 +21,14 @@
         -->
 			<ul class="flex justify-center gap-x-12">
 				<li
-					class="mt-10 mb-9 text-violet-50 text-center hover:text-opacity-50"
+					class="mt-8 mb-7 text-violet-50 text-center hover:text-opacity-50"
 					aria-current={$page.url.pathname === '/'}
 				>
 					<a href="/">home</a>
 				</li>
-				<li class=" mt-10 mb-9 text-violet-50">|</li>
+				<li class=" mt-8 mb-7 text-violet-50">|</li>
 				<li
-					class=" mt-10 mb-9 text-violet-50 text-center hover:text-opacity-50"
+					class=" mt-8 mb-7 text-violet-50 text-center hover:text-opacity-50"
 					aria-current={$page.url.pathname === '/about'}
 				>
 					<a href="/about">about</a>

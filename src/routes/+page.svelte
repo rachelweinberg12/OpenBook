@@ -41,8 +41,8 @@
 	}
 </script>
 
-<div class="font-poppins text-2xl">
-	<div class="flex justify-center my-10">
+<div class="font-poppins text-lg">
+	<div class="flex justify-center my-5">
 		<div>
 			<form class="font-poppins" on:keydown={onKeyDown}>
 				<Search bind:text={search} />

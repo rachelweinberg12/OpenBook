@@ -26,8 +26,8 @@
 	}
 </script>
 
-<div class="my-10">
-	<h1 class="text-5xl mx-40">{title}</h1>
+<div class="my-16">
+	<h1 class="text-4xl mx-40">{title}</h1>
 	<div class="flex mx-40">
 		<svg
 			xmlns="http://www.w3.org/2000/svg"
@@ -35,7 +35,7 @@
 			viewBox="0 0 24 24"
 			stroke-width="1.5"
 			stroke="currentColor"
-			class="w-20 h-20 rotate-180 my-24 hover:cursor-pointer"
+			class="w-20 h-20 rotate-180 my-20 hover:cursor-pointer"
 			on:click={() => prev()}
 		>
 			<path
@@ -53,7 +53,7 @@
 			viewBox="0 0 24 24"
 			stroke-width="1.5"
 			stroke="currentColor"
-			class="w-20 h-20 my-24 hover:cursor-pointer"
+			class="w-20 h-20 my-20 hover:cursor-pointer"
 			on:click={() => next()}
 		>
 			<path
