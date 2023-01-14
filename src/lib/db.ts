@@ -157,4 +157,3 @@ export async function sendFeedback(feedback: string, email: string) {
 }
 
 export type Donee = Database[];
-type DoneesResponse = Awaited<ReturnType<typeof getDonees>>;
