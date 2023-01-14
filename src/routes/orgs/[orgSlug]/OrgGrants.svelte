@@ -12,7 +12,7 @@
 	import Pagination from '@vincjo/datatables/Pagination.svelte';
 
 	export let incoming: boolean;
-	export let grantList: [];
+	export let grantList: any[];
 
 	let handler = new DataHandler(grantList, { rowsPerPage: 10 });
 	$: rows = handler.getRows();

@@ -5,10 +5,10 @@
 	import { formatLargeNumber } from '$lib/utils';
 	export let data: PageData;
 	const donee_data = data.donee_data[0];
-	function sum_grants(grantList: []) {
+	function sum_grants(grantList: { amount: number | null }[]) {
 		let total = 0;
 		for (let i = 0; i < grantList.length; i++) {
-			total += grantList[i].amount;
+			total += grantList[i].amount ?? 0;
 		}
 		return total;
 	}
