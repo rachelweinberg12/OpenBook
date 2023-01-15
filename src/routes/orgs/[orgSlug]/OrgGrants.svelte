@@ -19,14 +19,14 @@
 </script>
 
 <div class="flex justify-center">
-	<div class="font-poppins text-2xl">
-		<header class="font-poppins relative">
+	<div class="text-2xl">
+		<header class="relative">
 			{#if grantList.length > 10}
 				<div class="pt-7"><RowsPerPage {handler} /></div>
 			{/if}
 		</header>
 
-		<table class="font-poppins">
+		<table>
 			<thead>
 				<tr>
 					<Th {handler} orderBy={'donation_date'}>Date</Th>
@@ -66,7 +66,7 @@
 			</tbody>
 		</table>
 
-		<footer class="font-poppins">
+		<footer>
 			<RowCount {handler} />
 			{#if grantList.length > 10}
 				<Pagination {handler} />

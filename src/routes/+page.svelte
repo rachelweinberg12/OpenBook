@@ -41,18 +41,18 @@
 	}
 </script>
 
-<div class="font-poppins text-lg">
+<div class="text-lg">
 	<div class="flex justify-center my-5">
 		<div>
-			<form class="font-poppins" on:keydown={onKeyDown}>
+			<form on:keydown={onKeyDown}>
 				<Search bind:text={search} />
 			</form>
 
-			<header class="font-poppins">
+			<header>
 				<RowsPerPage {handler} />
 			</header>
 
-			<table class="font-poppins table-fixed">
+			<table class="table-fixed">
 				<thead>
 					<tr>
 						<Th {handler} orderBy={'donation_date'}>Date</Th>

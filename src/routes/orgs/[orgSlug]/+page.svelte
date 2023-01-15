@@ -14,7 +14,7 @@
 	}
 </script>
 
-<body class="font-poppins">
+<body>
 	<div class=" mx-20 my-16 text-center">
 		<h1 class="text-6xl">{data.name}</h1>
 		{#if donee_data}

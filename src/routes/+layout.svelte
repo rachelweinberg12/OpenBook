@@ -3,7 +3,7 @@
 	import '$lib/app.css';
 </script>
 
-<div class="app font-poppins">
+<div class="app">
 	<Header />
 
 	<main>

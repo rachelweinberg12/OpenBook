@@ -4,7 +4,7 @@
 
 <header class="bg-violet-400 shadow-lg w-full">
 	<h1 class="text-5xl font-bold text-white p-2 m-3 absolute">GoodLedger</h1>
-	<div class="flex justify-center font-poppins text-2xl">
+	<div class="flex justify-center text-2xl">
 		<nav>
 			<!--
 		<svg viewBox="0 0 2 3" aria-hidden="true">
