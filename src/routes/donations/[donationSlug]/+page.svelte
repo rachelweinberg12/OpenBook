@@ -8,11 +8,11 @@
 
 <body>
 	<h1 class="text-6xl text-center my-16 mx-20">
-		<a class="hover:underline" href="/orgs/${encodeURI(donation.donor.replaceAll('/', '^'))}"
+		<a class="hover:underline" href="/orgs/{encodeURI(donation.donor.replaceAll('/', '^'))}"
 			>{donation.donor}</a
 		>
 		to
-		<a class="hover:underline" href="/orgs/${encodeURI(donation.donee.replaceAll('/', '^'))}"
+		<a class="hover:underline" href="/orgs/{encodeURI(donation.donee.replaceAll('/', '^'))}"
 			>{donation.donee}</a
 		>
 	</h1>
