@@ -6,7 +6,7 @@
 	const donation = data.donation[0];
 </script>
 
-<body class="my-16">
+<body>
 	<h1 class="text-6xl text-center my-16 mx-20">
 		<a class="hover:underline" href="/orgs/${encodeURI(donation.donor.replaceAll('/', '^'))}"
 			>{donation.donor}</a
