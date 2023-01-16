@@ -1,5 +1,3 @@
-// Generated via https://supabase.com/docs/guides/api/generating-types#generating-types-using-supabase-cli
-// npx supabase gen types typescript --project-id "emqmvubrovsmdfjrbqjr" --schema public > src/lib/types/supabase.ts
 export type Json = string | number | boolean | null | { [key: string]: Json } | Json[];
 
 export interface Database {
@@ -206,7 +204,7 @@ export interface Database {
 					donation_date_basis?: string | null;
 					donation_date_precision?: string | null;
 					donation_earmark?: string | null;
-					donation_id: number;
+					donation_id?: number;
 					donation_process?: string | null;
 					donee?: string | null;
 					donor?: string | null;
