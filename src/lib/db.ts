@@ -43,6 +43,15 @@ export async function getDonation(id: string) {
 	return data ?? [];
 }
 
+type DonationInsert = Database['public']['Tables']['donations']['Insert'];
+export async function createDonation(donation: DonationInsert) {
+	const { data, error } = await supabase.from('donations').insert(donation).select();
+	if (error) {
+		console.log(error);
+	}
+	return data ?? [];
+}
+
 export async function getOrg(name: string) {
 	const { data, error } = await supabase.from('donees').select().eq('donee', name).limit(1);
 	if (error) {
