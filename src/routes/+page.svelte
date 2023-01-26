@@ -11,7 +11,6 @@
 
 	import { DataHandler } from '@vincjo/datatables';
 	import Th from '@vincjo/datatables/Th.svelte';
-	import ThFilter from '@vincjo/datatables/ThFilter.svelte';
 	import RowsPerPage from '@vincjo/datatables/RowsPerPage.svelte';
 	import RowCount from '@vincjo/datatables/RowCount.svelte';
 	import Pagination from '@vincjo/datatables/Pagination.svelte';
@@ -41,7 +40,7 @@
 	}
 </script>
 
-<div class="text-lg">
+<div class="text-m">
 	<div class="flex justify-center my-5">
 		<div>
 			<form on:keydown={onKeyDown}>

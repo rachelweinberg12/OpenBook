@@ -33,6 +33,13 @@
 				>
 					<a href="/about">about</a>
 				</li>
+				<li class=" mt-8 mb-7 text-violet-50">|</li>
+				<li
+					class=" mt-8 mb-7 text-violet-50 text-center hover:text-opacity-50"
+					aria-current={$page.url.pathname === '/donations'}
+				>
+					<a href="/donations">add</a>
+				</li>
 			</ul>
 		</nav>
 	</div>

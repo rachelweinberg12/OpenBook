@@ -165,4 +165,20 @@ export async function sendFeedback(feedback: string, email: string) {
 	}
 }
 
+export async function getDonorNames() {
+	const { data, error } = await supabase.rpc('get_donor_names');
+	if (error) {
+		console.log(error);
+	}
+	return data ?? [];
+}
+
+export async function getRecipientNames() {
+	const { data, error } = await supabase.rpc('get_recipient_names');
+	if (error) {
+		console.log(error);
+	}
+	return data ?? [];
+}
+
 export type Donee = Database[];
