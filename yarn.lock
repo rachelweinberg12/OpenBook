@@ -413,10 +413,10 @@
     "@typescript-eslint/types" "5.47.1"
     eslint-visitor-keys "^3.3.0"
 
-"@vincjo/datatables@^0.9.96":
-  version "0.9.96"
-  resolved "https://registry.yarnpkg.com/@vincjo/datatables/-/datatables-0.9.96.tgz#d40fffe11a2bca3bb6f9954bc09c4819dc7946ce"
-  integrity sha512-FH66d+MOaqvRP1DrTi39SSWYSYOwo+4mUKLOYw9yBoIPm0rg+tdh9e1rmw22za1UBtxuTjXUFsptVzCVNjnoFg==
+"@vincjo/datatables@^1.0.1":
+  version "1.0.1"
+  resolved "https://registry.yarnpkg.com/@vincjo/datatables/-/datatables-1.0.1.tgz#78c56826a1bb910fd32e60b2c3477cbb6a8dc9fd"
+  integrity sha512-/EX54ehjLPRNp/FBjK9wsM7mEuOs2L/5xf1kURFjihMk5P8eABBO6631btIYwg9oW/3+9YTxfaGPhio0kP49eQ==
 
 acorn-jsx@^5.3.2:
   version "5.3.2"
