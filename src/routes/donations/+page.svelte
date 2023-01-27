@@ -2,13 +2,8 @@
 	import { goto } from '$app/navigation';
 	import { createDonation } from '$lib/db';
 	import type { PageData } from './$types';
+	import Autocomplete from '$lib/Autocomplete.svelte';
 	export let data: PageData;
-	const donors = data.donorNames;
-	const recipients = data.recipientNames;
-	let filteredDonors: string[] = [];
-	let filteredRecipients: string[] = [];
-	let donorInput;
-	let recipientInput;
 
 	// Default to today's date e.g. '202  3-01-15', corrected for timezone
 	const offset = new Date().getTimezoneOffset();
@@ -35,93 +30,27 @@
 		goto(`/donations/${newId}`);
 	}
 
-	function filterDonors(search: string) {
-		if (search === '') {
-			filteredDonors = [];
-		} else {
-			filteredDonors = donors.filter((item) => item.toLowerCase().startsWith(search.toLowerCase()));
-			if (filteredDonors.length > 5) {
-				filteredDonors = filteredDonors.slice(0, 5);
-			}
+	const handleKeyDown = (event: KeyboardEvent) => {
+		if (event.key == 'Enter') {
+			event.preventDefault();
+			return false;
 		}
-	}
-	function filterRecipients(search: string) {
-		if (search === '') {
-			filteredRecipients = [];
-		} else {
-			filteredRecipients = recipients.filter((item) =>
-				item.toLowerCase().startsWith(search.toLowerCase())
-			);
-			if (filteredRecipients.length > 5) {
-				filteredRecipients = filteredRecipients.slice(0, 5);
-			}
-		}
-	}
-
-	function setDonor(name: string) {
-		donor = name;
-		filteredDonors = [];
-		document.querySelector('#donor').focus();
-	}
-
-	function setRecipient(name: string) {
-		donee = name;
-		filteredRecipients = [];
-		document.querySelector('#recipient').focus();
-	}
-
-	function createDonor(name: string) {
-		console.log('createDonor', name);
-		donors.push(name);
-		return name;
-	}
+	};
 </script>
 
 <!-- Allow user to create a new donation through a form-->
 <div class="my-16 mx-20">
 	<h1 class="text-3xl text-center mb-10">Create a new donation</h1>
 	<div class="flex justify-center">
-		<form on:submit|preventDefault={onSubmit} class="flex flex-col w-1/2 gap-1">
+		<form
+			on:submit|preventDefault={onSubmit}
+			class="flex flex-col w-1/2 gap-1"
+			on:keydown={handleKeyDown}
+		>
 			<label class="z-0" for="donor">Donor</label>
-			<input
-				class="peer rounded-sm focus:ring-2 focus:ring-violet-300 focus:ring-opacity-50 focus:border-violet-300"
-				type="text"
-				autocomplete="off"
-				id="donor"
-				name="donor"
-				bind:value={donor}
-				on:input={() => filterDonors(donor)}
-			/>
-			<ul class="hover:cursor-pointer grid gap-1 bg-white mt-0">
-				{#each filteredDonors as match}
-					<li
-						class="bg-gray-100 hover:bg-violet-300 p-2"
-						on:click|preventDefault={() => setDonor(match)}
-					>
-						{match}
-					</li>
-				{/each}
-			</ul>
+			<Autocomplete options={data.donorNames} bind:value={donor} />
 			<label class="z-0 mt-5" for="recipient">Recipient</label>
-			<input
-				class="peer rounded-sm focus:ring-2 focus:ring-violet-300 focus:ring-opacity-50 focus:border-violet-300"
-				type="text"
-				autocomplete="off"
-				id="recipient"
-				name="recipient"
-				bind:value={donee}
-				on:input={() => filterRecipients(donee)}
-			/>
-			<ul class="hover:cursor-pointer">
-				{#each filteredRecipients as match}
-					<li
-						class="bg-gray-100 hover:bg-violet-300 p-2"
-						on:click|preventDefault={() => setRecipient(match)}
-					>
-						{match}
-					</li>
-				{/each}
-			</ul>
+			<Autocomplete options={data.recipientNames} bind:value={donee} />
 			<label class="mt-5" for="amount">Amount (USD)</label>
 			<input
 				class="rounded-sm focus:ring-2 focus:ring-violet-300 focus:ring-opacity-50 focus:border-violet-300"
