@@ -19,7 +19,7 @@
 </script>
 
 <div class="flex justify-center">
-	<div class="text-2xl">
+	<div class="text-lg">
 		<header class="relative">
 			{#if grantList.length > 10}
 				<div class="pt-7"><RowsPerPage {handler} /></div>
@@ -59,7 +59,7 @@
 							>
 						{/if}
 						<td on:click={() => (window.location.href = `/donations/${row.donation_id}`)}>
-							<TagDisplay tagList={row.cause_area_array} />
+							<TagDisplay tagList={row.cause_area_array} shortDisplay={true} />
 						</td>
 					</Tr>
 				{/each}

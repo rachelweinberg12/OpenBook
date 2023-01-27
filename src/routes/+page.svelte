@@ -22,12 +22,14 @@
 
 	let handler = new DataHandler(data.donations, { rowsPerPage: 20 });
 	$: rows = handler.getRows();
+	console.log('og handler:', handler);
 
 	function executeSearch() {
 		if (search.length > 0) {
 			searchDonations(search.replaceAll(' ', '<->')).then(
 				(res) => (handler = new DataHandler(res, { rowsPerPage: 20 }))
 			);
+			console.log('new handler:', handler);
 		} else {
 			handler = new DataHandler(data.donations, { rowsPerPage: 20 });
 		}
@@ -83,7 +85,7 @@
 								>{row.donee}</TdLink
 							>
 							<td on:click={() => (window.location.href = `/donations/${row.donation_id}`)}>
-								<TagDisplay tagList={row.cause_area_array} />
+								<TagDisplay tagList={row.cause_area_array} shortDisplay={true} />
 							</td>
 						</Tr>
 					{/each}
