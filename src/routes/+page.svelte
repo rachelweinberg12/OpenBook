@@ -1,5 +1,5 @@
 <script lang="ts">
-	import type { PageData } from './hhome/$types';
+	import type { PageData } from './home/$types';
 	import Search from './Search.svelte';
 	import { formatLargeNumber } from '$lib/utils';
 	import { formatDate } from '$lib/utils';

@@ -181,4 +181,150 @@ export async function getRecipientNames() {
 	return data ?? [];
 }
 
+export async function addOpenPhil() {
+	const { data, error } = await supabase.from('openphilgrants').select();
+	if (error) {
+		console.log(error);
+	}
+	if (data) {
+		for (let i = 0; i < data.length; i++) {
+			// console.log(data[i]);
+			let fixedCauseAreaArray = [];
+			fixedCauseAreaArray.push(data[i].cause_area.toLowerCase());
+			let fixedAmount = 0;
+			if (data[i].amount != null) {
+				// console.log(data[i].amount);
+				fixedAmount = parseFloat(data[i].amount.replaceAll(',', '').replaceAll('$', ''));
+			}
+			let fixedDate = '';
+			switch (data[i].date) {
+				case 'December 2022':
+					fixedDate = '2022-12-01';
+					break;
+				case 'November 2022':
+					fixedDate = '2022-11-01';
+					break;
+				case 'October 2022':
+					fixedDate = '2022-10-01';
+					break;
+				case 'September 2022':
+					fixedDate = '2022-09-01';
+					break;
+				case 'August 2022':
+					fixedDate = '2022-08-01';
+					break;
+				case 'July 2022':
+					fixedDate = '2022-07-01';
+					break;
+				case 'June 2022':
+					fixedDate = '2022-06-01';
+					break;
+				case 'May 2022':
+					fixedDate = '2022-05-01';
+					break;
+				case 'April 2022':
+					fixedDate = '2022-04-01';
+					break;
+				case 'March 2022':
+					fixedDate = '2022-03-01';
+					break;
+				case 'February 2022':
+					fixedDate = '2022-02-01';
+					break;
+				case 'January 2022':
+					fixedDate = '2022-01-01';
+					break;
+				default:
+					fixedDate = 'ignore';
+					break;
+			}
+			// console.log(fixedDate, fixedAmount, fixedCauseAreaArray);
+			if (fixedDate != 'ignore') {
+				const { error } = await supabase.from('donations').insert({
+					donor: 'Open Philanthropy',
+					donee: data[i].recipient,
+					amount: fixedAmount,
+					donation_date: fixedDate,
+					cause_area: data[i].cause_area.toLowerCase(),
+					cause_area_array: fixedCauseAreaArray,
+					notes: data[i].Grant
+				});
+				console.log('inserted:', data[i].recipient);
+			}
+		}
+	}
+}
+
+export async function addEAF() {
+	const { data, error } = await supabase.from('eafgrants').select();
+	console.log('EAF running');
+	if (error) {
+		console.log(error);
+	}
+	if (data) {
+		for (let i = 0; i < data.length; i++) {
+			console.log(data[i]);
+			let fixedCauseArea = '';
+			switch (data[i].fund) {
+				case 'EA Infrastructure Fund':
+					fixedCauseArea = 'effective altruism';
+					break;
+				case 'Animal Welfare Fund':
+					fixedCauseArea = 'animal welfare';
+					break;
+				case 'Long-Term Future Fund':
+					fixedCauseArea = 'longtermism';
+					break;
+				default:
+					fixedCauseArea = '';
+					break;
+			}
+			let fixedDonor = 'Effective Altruism Funds: ' + data[i].fund;
+			if (fixedDonor == 'Effective Altruism Funds: EA Infrastructure Fund') {
+				fixedDonor = 'Effective Altruism Funds: Effective Altruism Infrastructure Fund';
+			}
+			let fixedCauseAreaArray = [];
+			fixedCauseAreaArray.push(fixedCauseArea);
+			let fixedAmount = 0;
+			if (data[i].amount != null) {
+				// console.log(data[i].amount);
+				fixedAmount = parseFloat(data[i].amount.replaceAll(',', '').replaceAll('$', ''));
+			}
+			let fixedDate = '';
+			switch (data[i].round) {
+				case '2022 Q1':
+					fixedDate = '2022-01-01';
+					break;
+				case '2022 Q2':
+					fixedDate = '2022-04-01';
+					break;
+				case '2022 Q3':
+					fixedDate = '2022-07-01';
+					break;
+				case '2022 Q4':
+					fixedDate = '2022-10-01';
+					break;
+				default:
+					fixedDate = 'ignore';
+					break;
+			}
+			console.log(fixedDate, fixedAmount, fixedCauseAreaArray);
+			if (fixedDate != 'ignore') {
+				const { error } = await supabase.from('donations').insert({
+					donor: fixedDonor,
+					donee: data[i].recipient,
+					amount: fixedAmount,
+					donation_date: fixedDate,
+					cause_area: fixedCauseArea,
+					cause_area_array: fixedCauseAreaArray,
+					intended_use_of_funds: data[i].description,
+					notes:
+						'The date listed on this grant is the start of the quarter when the grant was made, rather than the exact date.'
+				});
+				console.log('inserted:', data[i].recipient);
+			}
+		}
+	}
+}
+
 export type Donee = Database[];

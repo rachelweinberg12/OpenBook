@@ -3,7 +3,12 @@
 	// Rewrite long cause areas
 	let text =
 		{
-			'Biosecurity and pandemic preparedness': 'Biosecurity'
+			'Biosecurity and pandemic preparedness': 'Biosecurity',
+			'biosecurity & pandemic preparedness': 'biosecurity',
+			'effective altruism community growth (longtermism)': 'effective altruism',
+			'potential risks from advanced ai': 'ai safety',
+			'immigration policy': 'migration policy',
+			'global health & wellbeing': 'global health'
 		}[tag] ?? tag;
 
 	text = text.toLowerCase();
@@ -13,14 +18,16 @@
 			'ai safety': 'bg-orange-100',
 			forecasting: 'bg-yellow-100',
 			'epistemic institutions': 'bg-teal-100',
-			'migration policy': 'bg-blue-100',
-			biosecurity: 'bg-indigo-100',
-			'coordination efforts': 'bg-green-100',
+			'migration policy': 'bg-fuchsia-100',
+			biosecurity: 'bg-green-100',
+			'coordination efforts': 'bg-indigo-100',
 			'global health': 'bg-red-100',
 			'talent pipeline': 'bg-sky-100',
-			'vaccine development': 'bg-pink-100',
-			disinfection: 'bg-gray-100',
-			'effective altruism': 'bg-rose-100'
+			'effective altruism': 'bg-rose-100',
+			'animal welfare': 'bg-blue-100',
+			longtermism: 'bg-pink-100',
+			'farm animal welfare': 'bg-blue-100',
+			'factory farming': 'bg-blue-100'
 		}[text] ?? 'bg-slate-100';
 </script>
 
