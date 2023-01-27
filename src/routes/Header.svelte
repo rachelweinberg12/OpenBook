@@ -2,7 +2,7 @@
 	import { page } from '$app/stores';
 </script>
 
-<header class="bg-violet-400 shadow-lg w-full">
+<header class="bg-violet-400 shadow-lg w-full sticky inset-0">
 	<h1 class="text-5xl font-bold text-white p-2 m-3 absolute">GoodLedger</h1>
 	<div class="flex justify-center text-2xl">
 		<nav>

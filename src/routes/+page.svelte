@@ -47,11 +47,11 @@
 				<Search bind:text={search} />
 			</form>
 
-			<header>
+			<header class="mb-3">
 				<RowsPerPage {handler} />
 			</header>
 
-			<table class="table-fixed">
+			<table class="border-separate border-spacing-0">
 				<thead>
 					<tr>
 						<Th {handler} orderBy={'donation_date'}>Date</Th>

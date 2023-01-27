@@ -2,33 +2,40 @@
 	import OrgCard from './OrgCard.svelte';
 	export let orgList: [];
 	export let title: string;
+	let interval = 5;
+	let innerWidth = 0;
+	$: large = innerWidth > 1024;
+	$: xlarge = innerWidth > 1280;
+	$: interval = xlarge ? 5 : large ? 4 : 3;
 	let start = 0;
-	let end = 5;
+	$: end = start + interval;
 
 	function next() {
-		if (end < orgList.length - 5) {
-			start += 5;
-			end += 5;
+		if (end < orgList.length - interval) {
+			start += interval;
+			end += interval;
 		} else if (end < orgList.length) {
-			start = orgList.length - 5;
+			start = orgList.length - interval;
 			end = orgList.length;
 		}
 	}
 
 	function prev() {
-		if (start > 5) {
-			start -= 5;
-			end -= 5;
+		if (start > interval) {
+			start -= interval;
+			end -= interval;
 		} else if (start > 0) {
 			start = 0;
-			end = 5;
+			end = interval;
 		}
 	}
 </script>
 
+<svelte:window bind:innerWidth />
+
 <div class="my-16">
 	<h1 class="text-4xl mx-40">{title}</h1>
-	<div class="flex mx-40">
+	<div class="flex mx-10 2xl:mx-32">
 		<svg
 			xmlns="http://www.w3.org/2000/svg"
 			fill="none"
