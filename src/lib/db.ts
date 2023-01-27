@@ -357,7 +357,6 @@ export async function addSff() {
 				amount: Number(amount),
 				donation_date: fixedDate,
 				cause_area: '',
-				cause_area_array: [],
 				intended_use_of_funds: purpose,
 				url: url,
 				notes: `This grant was made as part of the Survival and Flourshing Fund round ${round}. The date listed on this grant is roughly when the round results were announced, rather than the exact date of funding.`
