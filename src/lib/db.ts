@@ -1,6 +1,7 @@
 import { createClient } from '@supabase/supabase-js';
 import { env } from '$env/dynamic/public';
 import type { Database } from './types/supabase';
+import { sff_2022_donations } from './sff';
 
 const supabaseUrl = 'https://emqmvubrovsmdfjrbqjr.supabase.co';
 const supabaseKey = env.PUBLIC_SUPABASE_KEY;
@@ -323,6 +324,45 @@ export async function addEAF() {
 				});
 				console.log('inserted:', data[i].recipient);
 			}
+		}
+	}
+}
+
+export async function addSff() {
+	const data = sff_2022_donations;
+
+	// const fakeData = [data[0], data[1], data.at(-1) || data[0]];
+	for (const row of data) {
+		const [round, funder, recipient, amount, receiving_charity, purpose] = row;
+		let fixedDate = '';
+		let url = '';
+
+		switch (round) {
+			case 'SFF-2022-H1':
+				fixedDate = '2022-06-01';
+				url = 'https://survivalandflourishing.fund/sff-2022-h1-recommendations';
+				break;
+			case 'SFF-2022-H2':
+				fixedDate = '2022-12-01';
+				url = 'https://survivalandflourishing.fund/sff-2022-h2-recommendations';
+				break;
+			default:
+				break;
+		}
+
+		if (fixedDate) {
+			const { error } = await supabase.from('donations').insert({
+				donor: funder,
+				donee: recipient,
+				amount: Number(amount),
+				donation_date: fixedDate,
+				cause_area: '',
+				cause_area_array: [],
+				intended_use_of_funds: purpose,
+				url: url,
+				notes: `This grant was made as part of the Survival and Flourshing Fund round ${round}. The date listed on this grant is roughly when the round results were announced, rather than the exact date of funding.`
+			});
+			console.log('inserted:', recipient);
 		}
 	}
 }
