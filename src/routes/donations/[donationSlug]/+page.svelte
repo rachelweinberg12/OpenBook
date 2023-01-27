@@ -42,31 +42,31 @@
 					<a class="hover:underline" href={donation.url}>{donation.url}</a>
 				</div>
 			{/if}
-			{#if donation.intended_use_of_funds != '\\N'}
+			{#if donation.intended_use_of_funds != '\\N' && donation.intended_use_of_funds}
 				<div class="flex flex-row gap-5">
 					<DetailIcon category="intended_use_of_funds" />
 					{donation.intended_use_of_funds}
 				</div>
 			{/if}
-			{#if donation.donation_process != '\\N'}
+			{#if donation.donation_process != '\\N' && donation.donation_process}
 				<div class="flex flex-row gap-5">
 					<DetailIcon category="donation_process" />
 					{donation.donation_process}
 				</div>
 			{/if}
-			{#if donation.donor_donee_reason != '\\N'}
+			{#if donation.donor_donee_reason != '\\N' && donation.donor_donee_reason}
 				<div class="flex flex-row gap-5">
 					<DetailIcon category="reason" />
 					{donation.donor_donee_reason}
 				</div>
 			{/if}
-			{#if donation.donor_timing_reason != '\\N'}
+			{#if donation.donor_timing_reason != '\\N' && donation.donor_timing_reason}
 				<div class="flex flex-row gap-5">
 					<DetailIcon category="timing_reason" />
 					{donation.donor_timing_reason}
 				</div>
 			{/if}
-			{#if donation.notes != '\\N'}
+			{#if donation.notes != '\\N' && donation.notes}
 				<div class="flex flex-row gap-5">
 					<DetailIcon category="notes" />
 					{donation.notes}
