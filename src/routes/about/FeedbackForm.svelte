@@ -30,7 +30,7 @@
 					feedback = '';
 					email = '';
 				}}
-				class="bg-violet-200 w-36 rounded-md shadow-sm hover:cursor-pointer hover:shadow-xl"
+				class="bg-violet-400 w-36 rounded-md shadow-sm hover:cursor-pointer hover:shadow-xl text-white"
 				>Submit</button
 			>
 		</div>

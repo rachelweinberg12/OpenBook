@@ -81,7 +81,7 @@
 			<div>
 				<button
 					type="submit"
-					class="mt-5 inline-flex items-center rounded-md border border-transparent bg-violet-500 px-4 py-2 text-sm font-medium text-white shadow-sm hover:bg-violet-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2"
+					class="mt-5 inline-flex items-center rounded-md border border-transparent bg-violet-400 px-4 py-2 text-sm font-medium text-white shadow-sm hover:bg-violet-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2"
 					>Create</button
 				>
 			</div>
