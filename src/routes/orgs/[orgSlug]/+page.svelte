@@ -15,10 +15,10 @@
 </script>
 
 <body>
-	<div class=" mx-20 my-16 text-center">
+	<div class="mx-20 my-16 text-center">
 		<h1 class="text-6xl">{data.name}</h1>
 		{#if donee_data}
-			<div class="flex flex-col gap-3 text-2xl mx-72 mt-12">
+			<div class="flex flex-col gap-3 lg:text-2xl md:text-xl sm:text-lg text-md mx-72 mt-12">
 				{#if donee_data.website}
 					<div class="flex flex-row gap-5 justify-center">
 						<DetailIcon category="donee_site" />

@@ -22,32 +22,44 @@
 	<div class="text-lg">
 		<header class="relative">
 			{#if grantList.length > 10}
-				<div class="pt-7"><RowsPerPage {handler} /></div>
+				<div class="my-5"><RowsPerPage {handler} /></div>
 			{/if}
 		</header>
 
-		<table>
+		<table class="min-w-full divide-y divide-gray-300">
 			<thead>
 				<tr>
-					<Th {handler} orderBy={'donation_date'}>Date</Th>
-					<Th {handler} orderBy={'amount'}>Amount</Th>
+					<Th {handler} orderBy={'donation_date'}>DATE</Th>
+					<Th {handler} orderBy={'amount'}>AMOUNT</Th>
 					{#if incoming}
-						<Th {handler} orderBy={'donor'}>Donor</Th>
+						<th scope="col" class="border-b border-gray-200 hidden lg:table-cell">DONOR</th>
 					{:else}
-						<Th {handler} orderBy={'donee'}>Recipient</Th>
+						<th scope="col" class="border-b border-gray-200 hidden lg:table-cell">RECIPIENT</th>
 					{/if}
-					<th class="border-b border-gray-200">Cause Area</th>
+					<th scope="col" class="border-b border-gray-200 hidden lg:table-cell">CAUSE AREAS</th>
 				</tr>
 			</thead>
-			<tbody>
+			<tbody class="divide-y divide-gray-200 bg-white">
 				{#each $rows as row}
 					<Tr>
-						<td on:click={() => (window.location.href = `/donations/${row.donation_id}`)}
-							>{formatDate(row.donation_date)}</td
-						>
 						<td
 							on:click={() => (window.location.href = `/donations/${row.donation_id}`)}
-							class="text-right px-5">{formatLargeNumber(row.amount)}</td
+							class="text-left max-w-xxs sm:max-w-xs"
+							>{formatDate(row.donation_date)}
+							<div class="lg:hidden text-left sm:text-xl py-2 ml-2">
+								{#if incoming}
+									<p class="mb-2 truncate ">{row.donor}</p>
+								{:else}
+									<p class="mb-2 truncate ">{row.donee}</p>
+								{/if}
+								{#if row.cause_area_array}
+									<TagDisplay tagList={row.cause_area_array} shortDisplay={true} maxTags={2} />
+								{/if}
+							</div>
+						</td>
+						<td
+							on:click={() => (window.location.href = `/donations/${row.donation_id}`)}
+							class="text-right px-5 align-top lg:align-middle">{formatLargeNumber(row.amount)}</td
 						>
 						{#if incoming}
 							<TdLink on:click={() => (window.location.href = `/orgs/${encodeURI(row.donor)}`)}
@@ -58,7 +70,10 @@
 								>{row.donee}</TdLink
 							>
 						{/if}
-						<td on:click={() => (window.location.href = `/donations/${row.donation_id}`)}>
+						<td
+							on:click={() => (window.location.href = `/donations/${row.donation_id}`)}
+							class="hidden lg:table-cell"
+						>
 							<TagDisplay tagList={row.cause_area_array} shortDisplay={true} />
 						</td>
 					</Tr>
