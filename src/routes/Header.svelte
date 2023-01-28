@@ -4,7 +4,7 @@
 </script>
 
 <header class="bg-violet-400 shadow-lg w-full sticky inset-0 z-10">
-	<h1 class="text-4xl sm:text-5xl font-bold text-white p-2 m-3 absolute">GoodLedger</h1>
+	<h1 class="text-4xl sm:text-5xl font-bold text-white p-2 m-3 absolute">OpenBook</h1>
 	<div class="flex justify-end text-2xl mx-10">
 		<nav>
 			<!--
