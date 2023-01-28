@@ -26,7 +26,7 @@
 			{/if}
 		</header>
 
-		<table class="min-w-full divide-y divide-gray-300">
+		<table class="min-w-full divide-y divide-gray-300 mt-5 mb-20">
 			<thead>
 				<tr>
 					<Th {handler} orderBy={'donation_date'}>DATE</Th>
@@ -48,9 +48,19 @@
 							>{formatDate(row.donation_date)}
 							<div class="lg:hidden text-left sm:text-xl py-2 ml-2">
 								{#if incoming}
-									<p class="mb-2 truncate ">{row.donor}</p>
+									<p
+										class="mb-2 truncate hover:font-bold underline"
+										on:click={() => (window.location.href = `/orgs/${encodeURI(row.donor)}`)}
+									>
+										{row.donor}
+									</p>
 								{:else}
-									<p class="mb-2 truncate ">{row.donee}</p>
+									<p
+										class="mb-2 truncate hover:font-bold underline"
+										on:click={() => (window.location.href = `/orgs/${encodeURI(row.donee)}`)}
+									>
+										{row.donee}
+									</p>
 								{/if}
 								{#if row.cause_area_array}
 									<TagDisplay tagList={row.cause_area_array} shortDisplay={true} maxTags={2} />

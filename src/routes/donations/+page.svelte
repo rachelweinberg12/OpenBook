@@ -39,7 +39,7 @@
 </script>
 
 <!-- Allow user to create a new donation through a form-->
-<div class="my-16 mx-20">
+<div class="my-16 mx-8">
 	<h1 class="text-3xl text-center mb-10">Create a new donation</h1>
 	<div class="flex justify-center">
 		<form

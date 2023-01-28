@@ -39,7 +39,7 @@
 </script>
 
 <div class="text-m">
-	<div class="flex justify-center my-5">
+	<div class="flex justify-center mt-5 mb-20">
 		<div>
 			<form on:keydown={onKeyDown}>
 				<Search bind:text={search} />
@@ -68,9 +68,20 @@
 								class="text-left max-w-xxs sm:max-w-xs"
 								>{formatDate(row.donation_date)}
 								<div class="lg:hidden text-left sm:text-xl py-2 ml-2">
-									<span class="mt-1 truncate ">{row.donor}</span>
+									<span
+										class="mt-1 truncate  hover:font-bold"
+										on:click={() =>
+											(window.location.href = `/orgs/${encodeURI(row.donor.replaceAll('/', '^'))}`)}
+										>{row.donor}</span
+									>
 									<span class="text-gray-600 font-thin"> to </span>
-									<p class="mb-3 truncate">{row.donee}</p>
+									<p
+										class="mb-3 truncate hover:font-bold"
+										on:click={() =>
+											(window.location.href = `/orgs/${encodeURI(row.donee.replaceAll('/', '^'))}`)}
+									>
+										{row.donee}
+									</p>
 									{#if row.cause_area_array}
 										<TagDisplay tagList={row.cause_area_array} shortDisplay={true} maxTags={2} />
 									{/if}

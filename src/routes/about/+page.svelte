@@ -2,7 +2,7 @@
 	import FeedbackForm from './FeedbackForm.svelte';
 </script>
 
-<div class="flex justify-center my-20 text-2xl">
+<div class="flex justify-center my-16 mx-8">
 	<div class="prose">
 		<h3 id="what-is-this-">What is this?</h3>
 		<p>
