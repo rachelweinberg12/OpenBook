@@ -65,7 +65,7 @@
 						<Tr>
 							<td
 								on:click={() => (window.location.href = `/donations/${row.donation_id}`)}
-								class="text-left max-w-xxs sm:max-w-xs"
+								class="text-left max-w-xxs sm:max-w-xs pl-2"
 								>{formatDate(row.donation_date)}
 								<div class="lg:hidden text-left sm:text-xl py-2 ml-2">
 									<span
