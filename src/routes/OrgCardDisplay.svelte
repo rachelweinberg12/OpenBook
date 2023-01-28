@@ -33,7 +33,7 @@
 
 <svelte:window bind:innerWidth />
 
-<div class="my-16">
+<div class="my-16 hidden md:block">
 	<h1 class="text-4xl xl:mx-40 mx-24">{title}</h1>
 	<div class="flex mx-10 2xl:mx-32">
 		<svg
