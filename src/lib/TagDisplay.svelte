@@ -4,7 +4,6 @@
 	export let shortDisplay: boolean = false;
 	export let maxTags: number = 3;
 	$: displayedTags = shortDisplay && tagList ? tagList.slice(0, maxTags) : tagList;
-	console.log('displayed', displayedTags, 'tagList', tagList);
 	$: extras = tagList && shortDisplay ? tagList.length - maxTags : 0;
 </script>
 
