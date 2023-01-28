@@ -13,7 +13,7 @@
 		<p>
 			Most donation data comes from Vipul Naik’s <a href="https://github.com/vipulnaik/donations"
 				>Donation List Website</a
-			>. Additional donations have been pulled from the websites of OpenPhil, EA Funds, and SFF.
+			>. We've pulled additional donations from the websites of OpenPhil, EA Funds, and SFF.
 		</p>
 		<p>
 			The source code for OpenBook is <a href="https://github.com/rachelweinberg12/zoe"
@@ -29,7 +29,7 @@
 		<p>Rachel Weinberg, with help from Austin Chen.</p>
 		<p>
 			If you have questions or feedback (or if you're looking to hire a frontend dev!), reach out to
-			rachel.weinberg12@gmail.com.
+			<a href="mailto:rachel.weinberg12@gmail.com"> rachel.weinberg12@gmail.com</a>.
 		</p>
 		<hr class="h-0.5 bg-gray-500" />
 		<FeedbackForm />
