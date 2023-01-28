@@ -7,7 +7,7 @@
 
 <div
 	class="bg-violet-100 p-3 m-2 md:p-5 md:m-5 rounded-lg h-52 xl:w-1/5 lg:w-1/4 w-1/3 shadow-md hover:shadow-xl hover:cursor-pointer hover:bg-violet-300 relative"
-	on:click={() => (window.location.href = `/orgs/${encodeURI(name.replaceAll('/', '^'))}`)}
+	on:click={() => (window.location.href = `/org/${encodeURI(name.replaceAll('/', '^'))}`)}
 >
 	<h1 class="md:text-xl sm:text-md text-sm mb-3 text-left">{name.replaceAll('/', '/ ')}</h1>
 	<div

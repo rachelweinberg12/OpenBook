@@ -79,14 +79,14 @@
 									<span
 										class="mt-1 truncate  hover:font-bold"
 										on:click={() =>
-											(window.location.href = `/orgs/${encodeURI(row.donor.replaceAll('/', '^'))}`)}
+											(window.location.href = `/org/${encodeURI(row.donor.replaceAll('/', '^'))}`)}
 										>{row.donor}</span
 									>
 									<span class="text-gray-600 font-thin"> to </span>
 									<p
 										class="mb-3 truncate hover:font-bold"
 										on:click={() =>
-											(window.location.href = `/orgs/${encodeURI(row.donee.replaceAll('/', '^'))}`)}
+											(window.location.href = `/org/${encodeURI(row.donee.replaceAll('/', '^'))}`)}
 									>
 										{row.donee}
 									</p>
@@ -102,12 +102,12 @@
 							>
 							<TdLink
 								on:click={() =>
-									(window.location.href = `/orgs/${encodeURI(row.donor.replaceAll('/', '^'))}`)}
+									(window.location.href = `/org/${encodeURI(row.donor.replaceAll('/', '^'))}`)}
 								>{row.donor}</TdLink
 							>
 							<TdLink
 								on:click={() =>
-									(window.location.href = `/orgs/${encodeURI(row.donee.replaceAll('/', '^'))}`)}
+									(window.location.href = `/org/${encodeURI(row.donee.replaceAll('/', '^'))}`)}
 								>{row.donee}</TdLink
 							>
 							<td

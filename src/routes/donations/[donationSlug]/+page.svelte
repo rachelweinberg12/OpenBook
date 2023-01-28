@@ -7,11 +7,11 @@
 </script>
 
 <h1 class="text-3xl sm:text-4xl md:text-5xl lg:text-6xl text-center my-16 mx-20">
-	<a class="hover:underline" href="/orgs/{encodeURI(donation.donor.replaceAll('/', '^'))}"
+	<a class="hover:underline" href="/org/{encodeURI(donation.donor.replaceAll('/', '^'))}"
 		>{donation.donor}</a
 	>
 	to
-	<a class="hover:underline" href="/orgs/{encodeURI(donation.donee.replaceAll('/', '^'))}"
+	<a class="hover:underline" href="/org/{encodeURI(donation.donee.replaceAll('/', '^'))}"
 		>{donation.donee}</a
 	>
 </h1>
