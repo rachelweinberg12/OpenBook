@@ -2,12 +2,13 @@
 	import Tag from '$lib/Tag.svelte';
 	export let tagList: string[];
 	export let shortDisplay: boolean = false;
-	$: displayedTags = shortDisplay && tagList ? tagList.slice(0, 3) : tagList;
+	export let maxTags: number = 3;
+	$: displayedTags = shortDisplay && tagList ? tagList.slice(0, maxTags) : tagList;
 	console.log('displayed', displayedTags, 'tagList', tagList);
-	$: extras = tagList && shortDisplay ? tagList.length - 3 : 0;
+	$: extras = tagList && shortDisplay ? tagList.length - maxTags : 0;
 </script>
 
-<div class="flex justify-center text-base">
+<div class="flex justify-left text-base">
 	{#if displayedTags}
 		{#each displayedTags as tag}
 			<Tag {tag} />

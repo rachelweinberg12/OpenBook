@@ -49,26 +49,37 @@
 				<RowsPerPage {handler} />
 			</header>
 
-			<table class="border-separate border-spacing-0">
+			<table class="min-w-full divide-y divide-gray-300">
 				<thead>
 					<tr>
-						<Th {handler} orderBy={'donation_date'}>Date</Th>
-						<Th {handler} orderBy={'amount'}>Amount</Th>
-						<th class="border-b border-gray-200">Donor</th>
-						<th class="border-b border-gray-200">Recipient</th>
-						<th class="border-b border-gray-200">Cause Area</th>
+						<Th {handler} orderBy={'donation_date'}>DATE</Th>
+						<Th {handler} orderBy={'amount'}>AMOUNT</Th>
+						<th scope="col" class="border-b border-gray-200 hidden lg:table-cell">DONOR</th>
+						<th scope="col" class="border-b border-gray-200 hidden lg:table-cell">RECIPIENT</th>
+						<th scope="col" class="border-b border-gray-200 hidden lg:table-cell">CAUSE AREAS</th>
 					</tr>
 				</thead>
 
-				<tbody>
+				<tbody class="divide-y divide-gray-200 bg-white">
 					{#each $rows as row}
 						<Tr>
-							<td on:click={() => (window.location.href = `/donations/${row.donation_id}`)}
-								>{formatDate(row.donation_date)}</td
-							>
 							<td
 								on:click={() => (window.location.href = `/donations/${row.donation_id}`)}
-								class="text-right px-5">{formatLargeNumber(row.amount)}</td
+								class="text-left max-w-xxs sm:max-w-xs"
+								>{formatDate(row.donation_date)}
+								<div class="lg:hidden text-left sm:text-xl py-2 ml-2">
+									<span class="mt-1 truncate ">{row.donor}</span>
+									<span class="text-gray-600 font-thin"> to </span>
+									<p class="mb-3 truncate">{row.donee}</p>
+									{#if row.cause_area_array}
+										<TagDisplay tagList={row.cause_area_array} shortDisplay={true} maxTags={2} />
+									{/if}
+								</div>
+							</td>
+							<td
+								on:click={() => (window.location.href = `/donations/${row.donation_id}`)}
+								class="text-right px-5 align-top lg:align-middle"
+								>{formatLargeNumber(row.amount)}</td
 							>
 							<TdLink
 								on:click={() =>
@@ -80,8 +91,11 @@
 									(window.location.href = `/orgs/${encodeURI(row.donee.replaceAll('/', '^'))}`)}
 								>{row.donee}</TdLink
 							>
-							<td on:click={() => (window.location.href = `/donations/${row.donation_id}`)}>
-								<TagDisplay tagList={row.cause_area_array} shortDisplay={true} />
+							<td
+								on:click={() => (window.location.href = `/donations/${row.donation_id}`)}
+								class="hidden lg:table-cell"
+							>
+								<TagDisplay tagList={row.cause_area_array} shortDisplay={true} maxTags={3} />
 							</td>
 						</Tr>
 					{/each}
@@ -98,3 +112,75 @@
 	<OrgCardDisplay orgList={data.donors} title="Top Donors" />
 	<OrgCardDisplay orgList={data.recipients} title="Top Recipients" />
 </div>
+<!--
+    <div className="px-4 sm:px-6 lg:px-8">
+      <div className="sm:flex sm:items-center">
+        <div className="sm:flex-auto">
+          <h1 className="text-xl font-semibold text-gray-900">Users</h1>
+          <p className="mt-2 text-sm text-gray-700">
+            A list of all the users in your account including their name, title, email and role.
+          </p>
+        </div>
+        <div className="mt-4 sm:mt-0 sm:ml-16 sm:flex-none">
+          <button
+            type="button"
+            className="inline-flex items-center justify-center rounded-md border border-transparent bg-indigo-600 px-4 py-2 text-sm font-medium text-white shadow-sm hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 sm:w-auto"
+          >
+            Add user
+          </button>
+        </div>
+      </div>
+      <div className="-mx-4 mt-8 overflow-hidden shadow ring-1 ring-black ring-opacity-5 sm:-mx-6 md:mx-0 md:rounded-lg">
+        <table className="min-w-full divide-y divide-gray-300">
+          <thead className="bg-gray-50">
+            <tr>
+              <th scope="col" className="py-3.5 pl-4 pr-3 text-left text-sm font-semibold text-gray-900 sm:pl-6">
+                Name
+              </th>
+              <th
+                scope="col"
+                className="hidden px-3 py-3.5 text-left text-sm font-semibold text-gray-900 lg:table-cell"
+              >
+                Title
+              </th>
+              <th
+                scope="col"
+                className="hidden px-3 py-3.5 text-left text-sm font-semibold text-gray-900 sm:table-cell"
+              >
+                Email
+              </th>
+              <th scope="col" className="px-3 py-3.5 text-left text-sm font-semibold text-gray-900">
+                Role
+              </th>
+              <th scope="col" className="relative py-3.5 pl-3 pr-4 sm:pr-6">
+                <span className="sr-only">Edit</span>
+              </th>
+            </tr>
+          </thead>
+          <tbody className="divide-y divide-gray-200 bg-white">
+            {people.map((person) => (
+              <tr key={person.email}>
+                <td className="w-full max-w-0 py-4 pl-4 pr-3 text-sm font-medium text-gray-900 sm:w-auto sm:max-w-none sm:pl-6">
+                  {person.name}
+                  <dl className="font-normal lg:hidden">
+                    <dt className="sr-only">Title</dt>
+                    <dd className="mt-1 truncate text-gray-700">{person.title}</dd>
+                    <dt className="sr-only sm:hidden">Email</dt>
+                    <dd className="mt-1 truncate text-gray-500 sm:hidden">{person.email}</dd>
+                  </dl>
+                </td>
+                <td className="hidden px-3 py-4 text-sm text-gray-500 lg:table-cell">{person.title}</td>
+                <td className="hidden px-3 py-4 text-sm text-gray-500 sm:table-cell">{person.email}</td>
+                <td className="px-3 py-4 text-sm text-gray-500">{person.role}</td>
+                <td className="py-4 pl-3 pr-4 text-right text-sm font-medium sm:pr-6">
+                  <a href="#" className="text-indigo-600 hover:text-indigo-900">
+                    Edit<span className="sr-only">, {person.name}</span>
+                  </a>
+                </td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      </div>
+    </div>
+-->
