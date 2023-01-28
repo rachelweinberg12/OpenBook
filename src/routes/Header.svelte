@@ -47,7 +47,7 @@
 					viewBox="0 0 24 24"
 					stroke-width="2"
 					stroke="white"
-					class="w-10 h-10"
+					class="w-10 h-10 relative left-5"
 				>
 					<path
 						stroke-linecap="round"
@@ -64,7 +64,7 @@
 						viewBox="0 0 24 24"
 						stroke-width="2"
 						stroke="white"
-						class="w-12 h-12 fixed top-5 right-9 hover:cursor-pointer"
+						class="w-12 h-12 fixed top-5 right-5 hover:cursor-pointer"
 						on:click={() => (showMenu = false)}
 					>
 						<path
