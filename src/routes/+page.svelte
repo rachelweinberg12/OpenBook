@@ -31,16 +31,24 @@
 		}
 	}
 
+	function debounce(func: (...args: unknown[]) => unknown, delay = 200) {
+		let timeout: NodeJS.Timeout;
+
+		return function (...args: unknown[]) {
+			clearTimeout(timeout);
+			timeout = setTimeout(() => func(...args), delay);
+		};
+	}
+	const debouncedSearch = debounce(executeSearch);
+
 	function onKeyDown(event: KeyboardEvent) {
-		if (event.key === 'Enter') {
-			executeSearch();
-		}
+		debouncedSearch();
 	}
 </script>
 
-<div class="text-m">
-	<div class="flex justify-center mt-5 mb-20">
-		<div>
+<div>
+	<div class="flex justify-center mt-5 mb-20 sm:px-20 px-2">
+		<div class="w-full">
 			<form on:keydown={onKeyDown}>
 				<Search bind:text={search} />
 			</form>
