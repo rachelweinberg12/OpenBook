@@ -25,11 +25,9 @@
 
 	function executeSearch() {
 		if (search.length > 0) {
-			searchDonations(search.replaceAll(' ', '<->')).then(
-				(res) => (handler = new DataHandler(res, { rowsPerPage: 20 }))
-			);
+			searchDonations(search.replaceAll(' ', '<->')).then((res) => handler.setRows(res));
 		} else {
-			handler = new DataHandler(data.donations, { rowsPerPage: 20 });
+			handler.setRows(data.donations);
 		}
 	}
 
