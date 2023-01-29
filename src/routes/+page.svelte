@@ -47,7 +47,7 @@
 </script>
 
 <div>
-	<div class="flex justify-center mt-5 mb-20 sm:px-20 px-2">
+	<div class="flex justify-center mt-5 sm:px-20 px-2">
 		<div class="w-full">
 			<form on:keydown={onKeyDown}>
 				<Search bind:text={search} />
@@ -71,20 +71,20 @@
 				<tbody class="divide-y divide-gray-200 bg-white">
 					{#each $rows as row}
 						<Tr>
-							<td
-								on:click={() => (window.location.href = `/donations/${row.donation_id}`)}
-								class="text-left max-w-xxs sm:max-w-xs pl-2"
-								>{formatDate(row.donation_date)}
+							<td class="text-left max-w-xxs sm:max-w-xs pl-2"
+								><p on:click={() => (window.location.href = `/donations/${row.donation_id}`)}>
+									{formatDate(row.donation_date)}
+								</p>
 								<div class="lg:hidden text-left sm:text-xl py-2 ml-2">
 									<span
-										class="mt-1 truncate  hover:font-bold"
+										class="mt-1 truncate  hover:underline"
 										on:click={() =>
 											(window.location.href = `/org/${encodeURI(row.donor.replaceAll('/', '^'))}`)}
 										>{row.donor}</span
 									>
 									<span class="text-gray-600 font-thin"> to </span>
 									<p
-										class="mb-3 truncate hover:font-bold"
+										class="mb-3 truncate hover:underline"
 										on:click={() =>
 											(window.location.href = `/org/${encodeURI(row.donee.replaceAll('/', '^'))}`)}
 									>
@@ -121,7 +121,7 @@
 				</tbody>
 			</table>
 
-			<footer>
+			<footer class="mb-20">
 				<RowCount {handler} />
 				<Pagination {handler} />
 			</footer>

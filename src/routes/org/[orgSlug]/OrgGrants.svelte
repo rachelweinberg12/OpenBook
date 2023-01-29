@@ -26,7 +26,7 @@
 			{/if}
 		</header>
 
-		<table class="min-w-full divide-y divide-gray-300 mt-5 mb-20">
+		<table class="min-w-full divide-y divide-gray-300 mt-5">
 			<thead>
 				<tr>
 					<Th {handler} orderBy={'donation_date'}>DATE</Th>
@@ -42,21 +42,21 @@
 			<tbody class="divide-y divide-gray-200 bg-white">
 				{#each $rows as row}
 					<Tr>
-						<td
-							on:click={() => (window.location.href = `/donations/${row.donation_id}`)}
-							class="text-left max-w-xxs sm:max-w-xs"
-							>{formatDate(row.donation_date)}
+						<td class="text-left max-w-xxs sm:max-w-xs"
+							><p on:click={() => (window.location.href = `/donations/${row.donation_id}`)}>
+								{formatDate(row.donation_date)}
+							</p>
 							<div class="lg:hidden text-left sm:text-xl py-2 ml-2">
 								{#if incoming}
 									<p
-										class="mb-2 truncate hover:font-bold underline"
+										class="mb-2 truncate hover:underline"
 										on:click={() => (window.location.href = `/org/${encodeURI(row.donor)}`)}
 									>
 										{row.donor}
 									</p>
 								{:else}
 									<p
-										class="mb-2 truncate hover:font-bold underline"
+										class="mb-2 truncate hover:underline"
 										on:click={() => (window.location.href = `/org/${encodeURI(row.donee)}`)}
 									>
 										{row.donee}
@@ -91,7 +91,7 @@
 			</tbody>
 		</table>
 
-		<footer>
+		<footer class="mb-20">
 			<RowCount {handler} />
 			{#if grantList.length > 10}
 				<Pagination {handler} />
