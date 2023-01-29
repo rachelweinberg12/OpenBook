@@ -50,14 +50,14 @@
 								{#if incoming}
 									<p
 										class="mb-2 truncate hover:font-bold underline"
-										on:click={() => (window.location.href = `/orgs/${encodeURI(row.donor)}`)}
+										on:click={() => (window.location.href = `/org/${encodeURI(row.donor)}`)}
 									>
 										{row.donor}
 									</p>
 								{:else}
 									<p
 										class="mb-2 truncate hover:font-bold underline"
-										on:click={() => (window.location.href = `/orgs/${encodeURI(row.donee)}`)}
+										on:click={() => (window.location.href = `/org/${encodeURI(row.donee)}`)}
 									>
 										{row.donee}
 									</p>
@@ -72,11 +72,11 @@
 							class="text-right px-5 align-top lg:align-middle">{formatLargeNumber(row.amount)}</td
 						>
 						{#if incoming}
-							<TdLink on:click={() => (window.location.href = `/orgs/${encodeURI(row.donor)}`)}
+							<TdLink on:click={() => (window.location.href = `/org/${encodeURI(row.donor)}`)}
 								>{row.donor}</TdLink
 							>
 						{:else}
-							<TdLink on:click={() => (window.location.href = `/orgs/${encodeURI(row.donee)}`)}
+							<TdLink on:click={() => (window.location.href = `/org/${encodeURI(row.donee)}`)}
 								>{row.donee}</TdLink
 							>
 						{/if}
