@@ -72,49 +72,39 @@
 					{#each $rows as row}
 						<Tr>
 							<td class="text-left max-w-xxs sm:max-w-xs pl-2"
-								><p on:click={() => (window.location.href = `/donations/${row.donation_id}`)}>
+								><a href={`/donations/${row.donation_id}`} class="min-w-full block">
 									{formatDate(row.donation_date)}
-								</p>
-								<div class="lg:hidden text-left sm:text-xl py-2 ml-2">
-									<span
+								</a>
+								<div class="lg:hidden text-left sm:text-xl py-3 ml-2">
+									<a
 										class="mt-1 truncate  hover:underline"
-										on:click={() =>
-											(window.location.href = `/org/${encodeURI(row.donor.replaceAll('/', '^'))}`)}
-										>{row.donor}</span
+										href={`/org/${encodeURI(row.donor.replaceAll('/', '^'))}`}>{row.donor}</a
 									>
 									<span class="text-gray-600 font-thin"> to </span>
-									<p
-										class="mb-3 truncate hover:underline"
-										on:click={() =>
-											(window.location.href = `/org/${encodeURI(row.donee.replaceAll('/', '^'))}`)}
+									<a
+										class="mb-2 truncate hover:underline block"
+										href={`/org/${encodeURI(row.donee.replaceAll('/', '^'))}`}
 									>
 										{row.donee}
-									</p>
+									</a>
 									{#if row.cause_area_array}
-										<TagDisplay tagList={row.cause_area_array} shortDisplay={true} maxTags={2} />
+										<a href={`/donations/${row.donation_id}`}>
+											<TagDisplay tagList={row.cause_area_array} shortDisplay={true} maxTags={2} />
+										</a>
 									{/if}
 								</div>
 							</td>
-							<td
-								on:click={() => (window.location.href = `/donations/${row.donation_id}`)}
-								class="text-right px-5 align-top lg:align-middle"
-								>{formatLargeNumber(row.amount)}</td
+							<td class="text-right px-5 align-top lg:align-middle"
+								><a class="block lg:h-full h-24 min-w-full" href={`/donations/${row.donation_id}`}
+									>{formatLargeNumber(row.amount)}</a
+								></td
 							>
-							<TdLink
-								on:click={() =>
-									(window.location.href = `/org/${encodeURI(row.donor.replaceAll('/', '^'))}`)}
-								>{row.donor}</TdLink
-							>
-							<TdLink
-								on:click={() =>
-									(window.location.href = `/org/${encodeURI(row.donee.replaceAll('/', '^'))}`)}
-								>{row.donee}</TdLink
-							>
-							<td
-								on:click={() => (window.location.href = `/donations/${row.donation_id}`)}
-								class="hidden lg:table-cell"
-							>
-								<TagDisplay tagList={row.cause_area_array} shortDisplay={true} maxTags={3} />
+							<TdLink url={`/org/${encodeURI(row.donor.replaceAll('/', '^'))}`}>{row.donor}</TdLink>
+							<TdLink url={`/org/${encodeURI(row.donee.replaceAll('/', '^'))}`}>{row.donee}</TdLink>
+							<td class="hidden lg:table-cell">
+								<a href={`/donations/${row.donation_id}`}>
+									<TagDisplay tagList={row.cause_area_array} shortDisplay={true} maxTags={3} />
+								</a>
 							</td>
 						</Tr>
 					{/each}

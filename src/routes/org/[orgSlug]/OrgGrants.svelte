@@ -19,7 +19,7 @@
 </script>
 
 <div class="flex justify-center">
-	<div class="text-lg">
+	<div class="w-full">
 		<header class="relative">
 			{#if grantList.length > 10}
 				<div class="my-5"><RowsPerPage {handler} /></div>
@@ -43,48 +43,43 @@
 				{#each $rows as row}
 					<Tr>
 						<td class="text-left max-w-xxs sm:max-w-xs"
-							><p on:click={() => (window.location.href = `/donations/${row.donation_id}`)}>
+							><a href={`/donations/${row.donation_id}`} class="min-w-full block">
 								{formatDate(row.donation_date)}
-							</p>
-							<div class="lg:hidden text-left sm:text-xl py-2 ml-2">
+							</a>
+							<div class="lg:hidden text-left sm:text-xl py-3 ml-2">
 								{#if incoming}
-									<p
-										class="mb-2 truncate hover:underline"
-										on:click={() => (window.location.href = `/org/${encodeURI(row.donor)}`)}
-									>
+									<a class="mb-2 truncate hover:underline" href={`/org/${encodeURI(row.donor)}`}>
 										{row.donor}
-									</p>
+									</a>
 								{:else}
-									<p
-										class="mb-2 truncate hover:underline"
-										on:click={() => (window.location.href = `/org/${encodeURI(row.donee)}`)}
+									<a
+										class="mb-2 truncate hover:underline block"
+										href={`/org/${encodeURI(row.donee)}`}
 									>
 										{row.donee}
-									</p>
+									</a>
 								{/if}
 								{#if row.cause_area_array}
-									<TagDisplay tagList={row.cause_area_array} shortDisplay={true} maxTags={2} />
+									<a href={`/donations/${row.donation_id}`}>
+										<TagDisplay tagList={row.cause_area_array} shortDisplay={true} maxTags={2} />
+									</a>
 								{/if}
 							</div>
 						</td>
-						<td
-							on:click={() => (window.location.href = `/donations/${row.donation_id}`)}
-							class="text-right px-5 align-top lg:align-middle">{formatLargeNumber(row.amount)}</td
+						<td class="text-right px-5 align-top lg:align-middle"
+							><a class="block lg:h-full h-20 min-w-full" href={`/donations/${row.donation_id}`}
+								>{formatLargeNumber(row.amount)}</a
+							></td
 						>
 						{#if incoming}
-							<TdLink on:click={() => (window.location.href = `/org/${encodeURI(row.donor)}`)}
-								>{row.donor}</TdLink
-							>
+							<TdLink url={`/org/${encodeURI(row.donor)}`}>{row.donor}</TdLink>
 						{:else}
-							<TdLink on:click={() => (window.location.href = `/org/${encodeURI(row.donee)}`)}
-								>{row.donee}</TdLink
-							>
+							<TdLink url={`/org/${encodeURI(row.donee)}`}>{row.donee}</TdLink>
 						{/if}
-						<td
-							on:click={() => (window.location.href = `/donations/${row.donation_id}`)}
-							class="hidden lg:table-cell"
-						>
-							<TagDisplay tagList={row.cause_area_array} shortDisplay={true} />
+						<td class="hidden lg:table-cell">
+							<a href={`/donations/${row.donation_id}`}>
+								<TagDisplay tagList={row.cause_area_array} shortDisplay={true} />
+							</a>
 						</td>
 					</Tr>
 				{/each}
