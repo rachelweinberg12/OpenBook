@@ -18,7 +18,7 @@ export async function getDonees() {
 export async function getDonations() {
 	const { data, error } = await supabase
 		.from('donations')
-		.select('donation_id, donor, donee, donation_date, cause_area_array, cause_area, amount')
+		.select('donation_id, donor, donee, donation_date, standard_cause_areas, cause_area, amount')
 		.order('donation_date', { ascending: false });
 	if (error) {
 		console.log('error in getDonations', error);

@@ -77,19 +77,23 @@
 								</a>
 								<div class="lg:hidden text-left sm:text-xl py-3 ml-2">
 									<a
-										class="mt-1 truncate  hover:underline"
+										class="mt-1 truncate  hover:underline max-w-full"
 										href={`/org/${encodeURI(row.donor.replaceAll('/', '^'))}`}>{row.donor}</a
 									>
 									<span class="text-gray-600 font-thin"> to </span>
 									<a
-										class="mb-2 truncate hover:underline block"
+										class="mb-2 truncate hover:underline block max-w-full"
 										href={`/org/${encodeURI(row.donee.replaceAll('/', '^'))}`}
 									>
 										{row.donee}
 									</a>
-									{#if row.cause_area_array}
+									{#if row.standard_cause_areas.length > 0}
 										<a href={`/donations/${row.donation_id}`}>
-											<TagDisplay tagList={row.cause_area_array} shortDisplay={true} maxTags={2} />
+											<TagDisplay
+												tagList={row.standard_cause_areas}
+												shortDisplay={true}
+												maxTags={2}
+											/>
 										</a>
 									{/if}
 								</div>
@@ -103,7 +107,7 @@
 							<TdLink url={`/org/${encodeURI(row.donee.replaceAll('/', '^'))}`}>{row.donee}</TdLink>
 							<td class="hidden lg:table-cell">
 								<a href={`/donations/${row.donation_id}`}>
-									<TagDisplay tagList={row.cause_area_array} shortDisplay={true} maxTags={3} />
+									<TagDisplay tagList={row.standard_cause_areas} shortDisplay={true} maxTags={3} />
 								</a>
 							</td>
 						</Tr>
