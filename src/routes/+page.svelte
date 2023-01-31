@@ -23,9 +23,15 @@
 	let handler = new DataHandler(data.donations, { rowsPerPage: 20 });
 	$: rows = handler.getRows();
 
+	function formatSearch() {
+		let formattedSearch = search.trimEnd();
+		formattedSearch = formattedSearch.replaceAll(' ', '<->');
+		return formattedSearch;
+	}
+
 	function executeSearch() {
 		if (search.length > 0) {
-			searchDonations(search.replaceAll(' ', '<->')).then((res) => {
+			searchDonations(formatSearch(search)).then((res) => {
 				handler.setRows(res);
 				console.log(res);
 			});
