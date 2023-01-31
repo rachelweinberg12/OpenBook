@@ -3,16 +3,16 @@
 
 	const COLOR_MAP: Record<string, string> = {
 		'AI safety': 'bg-orange-100',
-		'epistemic institutions': 'bg-yellow-100',
+		'epistemic institutions': 'bg-amber-100',
 		'migration policy': 'bg-fuchsia-100',
-		biosecurity: 'bg-green-100',
-		'global catastrophic risks': 'bg-teal-100',
+		biosecurity: 'bg-lime-100',
+		'global catastrophic risks': 'bg-emerald-100',
 		'global health & wellbeing': 'bg-red-100',
-		'EA community': 'bg-rose-100',
+		'EA community': 'bg-fuchsia-100',
 		'animal welfare': 'bg-blue-100',
 		'other longtermism': 'bg-pink-100',
 		other: 'bg-slate-100',
-		'criminal justice reform': 'bg-sky-100',
+		'criminal justice reform': 'bg-cyan-50',
 		'climate change': 'bg-indigo-100'
 	};
 	$: color = COLOR_MAP[tag] ?? 'bg-slate-100';
