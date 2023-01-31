@@ -68,11 +68,11 @@ async function getDonations() {
 }
 
 const donations = await getDonations();
-
+/*
 /**
  * @param {string[]} causeAreaArray
  * @param {string[]} currStandardCauseArray
- */
+ 
 function standardizeCauseAreas(causeAreaArray, currStandardCauseArray) {
 	if (currStandardCauseArray.length > 0) {
 		currStandardCauseArray = currStandardCauseArray.filter(
@@ -109,16 +109,31 @@ function standardizeCauseAreas(causeAreaArray, currStandardCauseArray) {
 		return ['other'];
 	}
 }
+*/
+
+/**
+ * @param {string[]} currStandardCauseAreas
+ */
+function standardizeCauseAreas(currStandardCauseAreas) {
+	if (
+		(currStandardCauseAreas.includes('biosecurity') ||
+			currStandardCauseAreas.includes('AI safety')) &&
+		currStandardCauseAreas.includes('global catastrophic risks')
+	) {
+		currStandardCauseAreas = currStandardCauseAreas.filter(
+			(cause) => cause != 'global catastrophic risks'
+		);
+		return currStandardCauseAreas;
+	}
+	return currStandardCauseAreas;
+}
 
 for (let i = 0; i < donations.length; i++) {
 	console.log('donation ', i, ' of ', donations.length);
 	const { error } = await supabase
 		.from('donations')
 		.update({
-			standard_cause_areas: standardizeCauseAreas(
-				donations[i].cause_area_array,
-				donations[i].standard_cause_array
-			)
+			standard_cause_areas: standardizeCauseAreas(donations[i].standard_cause_areas)
 		})
 		.eq('donation_id', donations[i].donation_id);
 	if (error) {

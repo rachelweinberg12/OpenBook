@@ -28,9 +28,9 @@ export async function getDonations() {
 }
 
 export async function searchDonations(search: string) {
-	const { data, error } = await supabase.rpc('search', { keyword: search });
+	const { data, error } = await supabase.rpc('search_donations', { keyword: search });
 	if (error) {
-		console.log(error);
+		console.log('error in searchDonations', error);
 	}
 	return data ?? [];
 }
