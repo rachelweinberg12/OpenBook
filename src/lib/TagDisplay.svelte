@@ -7,7 +7,7 @@
 	$: extras = tagList && shortDisplay ? tagList.length - maxTags : 0;
 </script>
 
-<div class="flex justify-left text-base">
+<div class="flex lg:justify-center justify-left text-base">
 	{#if displayedTags}
 		{#each displayedTags as tag}
 			<Tag {tag} />

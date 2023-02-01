@@ -5,6 +5,12 @@
 </script>
 
 <h3 class="text-center">Feedback Form</h3>
+<p>
+	You can also leave feedback in the comments of the <a
+		href="https://forum.effectivealtruism.org/posts/xQf9HpHoyz7DemzAE/openbook-new-ea-grants-database"
+		>EA forum post</a
+	> announcing this site.
+</p>
 <form>
 	<div>
 		<p class="mb-0">Email</p>

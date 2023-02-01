@@ -5,6 +5,7 @@
 	import { formatDate } from '$lib/utils';
 	import Tr from '$lib/Tr.svelte';
 	import TdLink from '$lib/TdLink.svelte';
+	import DataDownload from '$lib/DataDownload.svelte';
 
 	import OrgCardDisplay from './OrgCardDisplay.svelte';
 	import TagDisplay from '$lib/TagDisplay.svelte';
@@ -62,8 +63,9 @@
 				<Search bind:text={search} />
 			</form>
 
-			<header class="mb-3">
+			<header class="mb-1 flex justify-between">
 				<RowsPerPage {handler} />
+				<DataDownload />
 			</header>
 
 			<table class="min-w-full divide-y divide-gray-300">
@@ -77,10 +79,10 @@
 					</tr>
 				</thead>
 
-				<tbody class="divide-y divide-gray-200 bg-white">
+				<tbody class="divide-y-4 divide-white bg-white border-collapse">
 					{#each $rows as row}
 						<Tr>
-							<td class="text-left max-w-xxs sm:max-w-xs pl-2"
+							<td class="text-left max-w-xxs sm:max-w-xs pl-3"
 								><a href={`/donations/${row.donation_id}`} class="min-w-full block">
 									{formatDate(row.donation_date)}
 								</a>
