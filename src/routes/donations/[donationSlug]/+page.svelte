@@ -56,10 +56,10 @@
 				{donation.amount}
 			</div>
 		{/if}
-		{#if donation.cause_area_array}
+		{#if donation.cause_array}
 			<div class="flex flex-row gap-5">
 				<DetailIcon category="cause_areas" />
-				<TagDisplay tagList={donation.cause_area_array} />
+				<TagDisplay tagList={donation.cause_array} />
 			</div>
 		{/if}
 		{#if donation.url}

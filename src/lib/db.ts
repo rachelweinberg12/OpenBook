@@ -18,7 +18,7 @@ export async function getDonees() {
 export async function getDonations() {
 	const { data, error } = await supabase
 		.from('donations')
-		.select('donation_id, donor, donee, donation_date, standard_cause_areas, cause_area, amount')
+		.select('donation_id, donor, donee, donation_date, cause_array, amount')
 		.order('donation_date', { ascending: false });
 	if (error) {
 		console.log('error in getDonations', error);
@@ -28,7 +28,7 @@ export async function getDonations() {
 }
 
 export async function searchDonations(search: string) {
-	const { data, error } = await supabase.rpc('search_donations', { keyword: search });
+	const { data, error } = await supabase.rpc('search_data', { keyword: search });
 	if (error) {
 		console.log('error in searchDonations', error);
 	}
@@ -63,7 +63,7 @@ export async function getOrg(name: string) {
 export async function getIncomings(name: string) {
 	const { data, error } = await supabase
 		.from('donations')
-		.select()
+		.select('donation_id, donor, donee, donation_date, cause_array, amount')
 		.eq('donee', name)
 		.order('donation_date', { ascending: false });
 	if (error) {
@@ -75,7 +75,7 @@ export async function getIncomings(name: string) {
 export async function getOutgoings(name: string) {
 	const { data, error } = await supabase
 		.from('donations')
-		.select()
+		.select('donation_id, donor, donee, donation_date, cause_array, amount')
 		.eq('donor', name)
 		.order('donation_date', { ascending: false });
 	if (error) {

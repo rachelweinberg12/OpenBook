@@ -59,13 +59,9 @@
 										{row.donee}
 									</a>
 								{/if}
-								{#if row.standard_cause_areas}
+								{#if row.cause_array}
 									<a href={`/donations/${row.donation_id}`}>
-										<TagDisplay
-											tagList={row.standard_cause_areas}
-											shortDisplay={true}
-											maxTags={2}
-										/>
+										<TagDisplay tagList={row.cause_array} shortDisplay={true} maxTags={2} />
 									</a>
 								{/if}
 							</div>
@@ -82,7 +78,7 @@
 						{/if}
 						<td class="hidden lg:table-cell">
 							<a href={`/donations/${row.donation_id}`}>
-								<TagDisplay tagList={row.standard_cause_areas} shortDisplay={true} />
+								<TagDisplay tagList={row.cause_array} shortDisplay={true} />
 							</a>
 						</td>
 					</Tr>

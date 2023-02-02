@@ -32,7 +32,7 @@
 
 	function executeSearch() {
 		if (search.length > 0) {
-			searchDonations(formatSearch(search)).then((res) => {
+			searchDonations(formatSearch()).then((res) => {
 				handler.setRows(res);
 				console.log(res);
 			});
@@ -98,13 +98,9 @@
 									>
 										{row.donee}
 									</a>
-									{#if row.standard_cause_areas}
+									{#if row.cause_array}
 										<a href={`/donations/${row.donation_id}`}>
-											<TagDisplay
-												tagList={row.standard_cause_areas}
-												shortDisplay={true}
-												maxTags={2}
-											/>
+											<TagDisplay tagList={row.cause_array} shortDisplay={true} maxTags={2} />
 										</a>
 									{/if}
 								</div>
@@ -118,7 +114,7 @@
 							<TdLink url={`/org/${encodeURI(row.donee.replaceAll('/', '^'))}`}>{row.donee}</TdLink>
 							<td class="hidden lg:table-cell">
 								<a href={`/donations/${row.donation_id}`}>
-									<TagDisplay tagList={row.standard_cause_areas} shortDisplay={true} maxTags={3} />
+									<TagDisplay tagList={row.cause_array} shortDisplay={true} maxTags={3} />
 								</a>
 							</td>
 						</Tr>
