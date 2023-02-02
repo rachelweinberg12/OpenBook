@@ -126,7 +126,7 @@
 				</tbody>
 			</table>
 
-			<footer class="mb-20">
+			<footer class="mb-10">
 				<RowCount {handler} />
 				<Pagination {handler} />
 			</footer>

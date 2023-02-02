@@ -39,7 +39,7 @@
 					<th scope="col" class="border-b border-gray-200 hidden lg:table-cell">CAUSE AREAS</th>
 				</tr>
 			</thead>
-			<tbody class="divide-y divide-gray-200 bg-white">
+			<tbody class="divide-y-4 divide-white bg-white border-collapse">
 				{#each $rows as row}
 					<Tr>
 						<td class="text-left max-w-xxs sm:max-w-xs"
