@@ -92,7 +92,7 @@
 			</form>
 			<CauseFilter bind:selected={causes_in_view} />
 
-			<header class="mb-1 flex justify-between">
+			<header class="mb-1 flex justify-between text-sm sm:text-md md:text-lg">
 				<RowsPerPage {handler} />
 				<DataDownload />
 			</header>
