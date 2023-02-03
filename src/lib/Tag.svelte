@@ -14,7 +14,7 @@
 		'migration policy': 'bg-fuchsia-200',
 		'criminal justice reform': 'bg-pink-200',
 		'EA community': 'bg-rose-200',
-		other: 'bg-slate-200'
+		other: 'bg-slate-300'
 	};
 	$: color = COLOR_MAP[tag] ?? 'bg-slate-100';
 </script>
