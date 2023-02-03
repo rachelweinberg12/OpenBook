@@ -92,6 +92,48 @@ export async function getDonors() {
 	return data ?? [];
 }
 
+export async function getRecipients() {
+	const { data, error } = await supabase.rpc('get_recipients');
+	if (error) {
+		console.log('error in getRecipients', error);
+	}
+	return data ?? [];
+}
+
+export async function sendFeedback(feedback: string, email: string) {
+	const { error } = await supabase.from('feedback').insert({ feedback: feedback, email: email });
+	if (error) {
+		console.log(error);
+	}
+}
+
+export async function getDonorNames() {
+	const { data, error } = await supabase.rpc('get_donor_names');
+	if (error) {
+		console.log(error);
+	}
+	return data ?? [];
+}
+
+export async function getRecipientNames() {
+	const { data, error } = await supabase.rpc('get_recipient_names');
+	if (error) {
+		console.log(error);
+	}
+	return data ?? [];
+}
+
+export async function getAllDonationData() {
+	const { data, error } = await supabase
+		.from('donations')
+		.select()
+		.order('donation_date', { ascending: false });
+	if (error) {
+		console.log('error in getDonations', error);
+	}
+	return data ?? [];
+}
+
 /*
 export function cs_getDonors(data: []) {
 		if (data) {
@@ -114,17 +156,6 @@ export function cs_getDonors(data: []) {
 
 	return donors;
 }
-*/
-
-export async function getRecipients() {
-	const { data, error } = await supabase.rpc('get_recipients');
-	if (error) {
-		console.log('error in getRecipients', error);
-	}
-	return data ?? [];
-}
-
-/*
 async function getCauseAreas() {
 	const { data, error } = await supabase.from('donationsea').select();
 	let causeAreas = [];
@@ -156,30 +187,7 @@ export async function fixCauseAreas() {
 		console.log('updated', causeAreas[i].id);
 	}
 }
-*/
 
-export async function sendFeedback(feedback: string, email: string) {
-	const { error } = await supabase.from('feedback').insert({ feedback: feedback, email: email });
-	if (error) {
-		console.log(error);
-	}
-}
-
-export async function getDonorNames() {
-	const { data, error } = await supabase.rpc('get_donor_names');
-	if (error) {
-		console.log(error);
-	}
-	return data ?? [];
-}
-
-export async function getRecipientNames() {
-	const { data, error } = await supabase.rpc('get_recipient_names');
-	if (error) {
-		console.log(error);
-	}
-	return data ?? [];
-}
 
 export async function addOpenPhil() {
 	const { data, error } = await supabase.from('openphilgrants').select();
@@ -365,4 +373,5 @@ export async function addSff() {
 	}
 }
 
+*/
 export type Donee = Database[];

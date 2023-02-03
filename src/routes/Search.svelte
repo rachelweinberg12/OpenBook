@@ -5,7 +5,7 @@
 <input
 	{...$$restProps}
 	type="text"
-	class="border-2 text-xl border-gray-300 rounded outline-none px-3 h-12 m-0 bg-transparent w-full transition-all duration-100 focus:border-gray-300 focus:ring focus:ring-violet-300 mt-8 mb-4"
+	class="border-2 border-gray-300 rounded outline-none px-3 h-12 m-0 bg-transparent w-full transition-all duration-100 focus:border-gray-300 focus:ring focus:ring-violet-300 mt-8 mb-4"
 	placeholder="Search..."
 	bind:value={text}
 />

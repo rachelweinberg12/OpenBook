@@ -2,18 +2,19 @@
 	export let tag: string;
 
 	const COLOR_MAP: Record<string, string> = {
-		'AI safety': 'bg-blue-100',
-		'epistemic institutions': 'bg-amber-100',
-		'migration policy': 'bg-fuchsia-100',
-		biosecurity: 'bg-lime-100',
-		'global catastrophic risks': 'bg-emerald-100',
-		'global health & wellbeing': 'bg-red-100',
-		'EA community': 'bg-fuchsia-100',
-		'animal welfare': 'bg-orange-100',
-		'other longtermism': 'bg-pink-100',
-		other: 'bg-slate-100',
-		'criminal justice reform': 'bg-cyan-50',
-		'climate change': 'bg-indigo-100'
+		'global health & wellbeing': 'bg-red-200',
+		'animal welfare': 'bg-orange-200',
+		'AI safety': 'bg-amber-200',
+		biosecurity: 'bg-lime-200',
+		'nuclear risk': 'bg-emerald-200',
+		'climate change': 'bg-cyan-200',
+		'global catastrophic risks': 'bg-blue-200',
+		'other longtermism': 'bg-indigo-200',
+		'epistemic institutions': 'bg-violet-200',
+		'migration policy': 'bg-fuchsia-200',
+		'criminal justice reform': 'bg-pink-200',
+		'EA community': 'bg-rose-200',
+		other: 'bg-slate-200'
 	};
 	$: color = COLOR_MAP[tag] ?? 'bg-slate-100';
 </script>

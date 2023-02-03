@@ -6,6 +6,7 @@
 	import Tr from '$lib/Tr.svelte';
 	import TdLink from '$lib/TdLink.svelte';
 	import DataDownload from '$lib/DataDownload.svelte';
+	import CauseFilter from '$lib/CauseFilter.svelte';
 
 	import OrgCardDisplay from './OrgCardDisplay.svelte';
 	import TagDisplay from '$lib/TagDisplay.svelte';
@@ -34,7 +35,6 @@
 		if (search.length > 0) {
 			searchDonations(formatSearch()).then((res) => {
 				handler.setRows(res);
-				console.log(res);
 			});
 		} else {
 			handler.setRows(data.donations);
@@ -54,14 +54,42 @@
 	function onKeyDown(event: KeyboardEvent) {
 		debouncedSearch();
 	}
+
+	/*
+	function applyFilter() {
+		if (selected.length == 0) {
+			return;
+		}
+		let currRows = handler.getRows();
+		let filteredRows: Object[] = [];
+		currRows.forEach((row: Object) => {
+			if (checkFilter(row.cause_array)) {
+				filteredRows.push(row);
+			}
+		});
+		handler.setRows(filteredRows);
+	}
+
+	function checkFilter(donation_causes: string[]) {
+		for (let i = 0; i < selected.length; i++) {
+			if (donation_causes.includes(selected[i])) {
+				return true;
+			}
+		}
+		return false;
+	}
+	*/
 </script>
 
 <div>
 	<div class="flex justify-center mt-5 sm:px-20 px-2">
 		<div class="w-full">
-			<form on:keydown={onKeyDown}>
-				<Search bind:text={search} />
-			</form>
+			<div class="mb-1 flex gap-2">
+				<form on:keydown={onKeyDown}>
+					<Search bind:text={search} />
+				</form>
+				<CauseFilter />
+			</div>
 
 			<header class="mb-1 flex justify-between">
 				<RowsPerPage {handler} />
