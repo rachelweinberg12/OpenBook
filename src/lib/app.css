@@ -9,12 +9,11 @@ div.multiselect {
 	border-radius: 0.25rem;
 	outline: none;
 	padding: 0.5rem;
-	height: 3rem;
+	min-height: 3rem;
 	background-color: transparent;
 	width: 100%;
 	transition: all 0.1s;
-	margin-top: 2rem;
-	margin-bottom: 1rem;
+	margin-bottom: 2rem;
 }
 
 div.multiselect:focus-within {

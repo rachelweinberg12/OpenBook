@@ -87,12 +87,10 @@
 <div>
 	<div class="flex justify-center mt-5 sm:px-20 px-2">
 		<div class="w-full">
-			<div class="mb-1 flex gap-2">
-				<form on:keydown={onKeyDown}>
-					<Search bind:text={search} />
-				</form>
-				<CauseFilter bind:selected={causes_in_view} />
-			</div>
+			<form on:keydown={onKeyDown}>
+				<Search bind:text={search} />
+			</form>
+			<CauseFilter bind:selected={causes_in_view} />
 
 			<header class="mb-1 flex justify-between">
 				<RowsPerPage {handler} />
