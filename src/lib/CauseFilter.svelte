@@ -1,8 +1,7 @@
 <script lang="ts">
 	import MultiSelect from 'svelte-multiselect';
 	import Tag from '$lib/Tag.svelte';
-
-	let selected: any[] = [];
+	export let selected: any[] = [];
 	let open = false;
 	const CAUSES = [
 		'global health & wellbeing',
