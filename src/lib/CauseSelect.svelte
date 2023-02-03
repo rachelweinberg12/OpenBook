@@ -2,6 +2,7 @@
 	import MultiSelect from 'svelte-multiselect';
 	import Tag from '$lib/Tag.svelte';
 	export let selected: any[] = [];
+	export let placeholder: string = '';
 	let open = false;
 	const CAUSES = [
 		'global health & wellbeing',
@@ -21,13 +22,7 @@
 </script>
 
 <div class="w-full">
-	<MultiSelect
-		bind:selected
-		options={CAUSES}
-		{open}
-		placeholder="Filter by cause area"
-		on:click={() => (open = !open)}
-	>
+	<MultiSelect bind:selected options={CAUSES} {open} {placeholder} on:click={() => (open = !open)}>
 		<p let:option slot="option" class="max-w-min text-md">
 			<Tag tag={option} />
 		</p>

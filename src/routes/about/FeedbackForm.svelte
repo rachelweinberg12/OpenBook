@@ -16,7 +16,7 @@
 <form>
 	<div>
 		<label for="email">Email</label>
-		<TextInput id="email" placeholder="hi@example.com" bind:text={email} />
+		<TextInput id="email" placeholder="hi@example.com" bind:text={email} type="text" />
 		<label for="feedback">Feedback</label>
 		<textarea
 			id="feedback"

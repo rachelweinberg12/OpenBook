@@ -45,3 +45,14 @@ export function checkFilter(donation_causes: string[], causes_in_view: string[])
 	}
 	return false;
 }
+
+export function arrayToString(array: string[]) {
+	let string = '';
+	for (let i = 0; i < array.length; i++) {
+		string += array[i];
+		if (i < array.length - 1) {
+			string += ' ';
+		}
+	}
+	return string;
+}

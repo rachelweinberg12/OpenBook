@@ -32,9 +32,9 @@
 </script>
 
 <div class="flex-col justify-center sm:px-10 px-5 mb-10">
-	<CauseSelect bind:selected={causes_in_view} />
+	<CauseSelect bind:selected={causes_in_view} placeholder="Filter by cause area" />
 	<div class="w-full">
-		<header class="mb-1 flex justify-between text-sm sm:text-md md:text-lg">
+		<header class="mt-4 flex justify-between text-sm sm:text-md md:text-lg">
 			{#if grantList.length > 10}
 				<div><RowsPerPage {handler} /></div>
 			{/if}

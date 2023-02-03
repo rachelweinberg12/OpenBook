@@ -1,4 +1,5 @@
 import { createClient } from '@supabase/supabase-js';
+import { arrayToString } from '$lib/utils';
 
 const supabaseUrl = 'https://emqmvubrovsmdfjrbqjr.supabase.co';
 const supabaseKey =
@@ -18,20 +19,6 @@ async function getDonations() {
 }
 
 const donations = await getDonations();
-
-/**
- * @param {string[]} array
- */
-function arrayToString(array) {
-	let string = '';
-	for (let i = 0; i < array.length; i++) {
-		string += array[i];
-		if (i < array.length - 1) {
-			string += ' ';
-		}
-	}
-	return string;
-}
 
 for (let i = 0; i < donations.length; i++) {
 	console.log('donation ', i, ' of ', donations.length);

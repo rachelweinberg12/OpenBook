@@ -1,4 +1,5 @@
 <script lang="ts">
+	import TextInput from '$lib/TextInput.svelte';
 	export let options: string[];
 	export let value: string;
 	let filteredOptions: string[] = [];
@@ -24,7 +25,7 @@
 </script>
 
 <input
-	class="peer rounded-sm focus:ring-2 focus:ring-violet-300 focus:ring-opacity-50 focus:border-violet-300"
+	class="peer px-3 h-8 sm:h-12 border-2 border-gray-300 w-full rounded-md outline-none focus:ring focus:ring-violet-300 focus:border-gray-300"
 	type="text"
 	autocomplete="off"
 	id="input"

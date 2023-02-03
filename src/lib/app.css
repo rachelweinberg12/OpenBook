@@ -13,7 +13,6 @@ div.multiselect {
 	background-color: transparent;
 	width: 100%;
 	transition: all 0.1s;
-	margin-bottom: 1rem;
 }
 
 @media (min-width: 640px) {
