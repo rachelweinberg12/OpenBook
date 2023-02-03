@@ -59,7 +59,7 @@
 		{#if data.incomings.length > 0}
 			<div>
 				<h3 class="text-xl sm:text-2xl md:text-3xl mb-3">
-					Incoming Grants | Total Recieved: ${formatLargeNumber(sum_grants(data.incomings))}
+					Incoming Grants | Total Received: ${formatLargeNumber(sum_grants(data.incomings))}
 				</h3>
 				<OrgGrants grantList={data.incomings} incoming={true} />
 			</div>
