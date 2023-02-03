@@ -31,16 +31,16 @@
 	$: rows = handler.getRows();
 </script>
 
-<div class="flex-col justify-center">
+<div class="flex-col justify-center sm:px-10 px-5 mb-10">
 	<CauseSelect bind:selected={causes_in_view} />
 	<div class="w-full">
-		<header class="relative">
+		<header class="mb-1 flex justify-between text-sm sm:text-md md:text-lg">
 			{#if grantList.length > 10}
 				<div><RowsPerPage {handler} /></div>
 			{/if}
 		</header>
 
-		<table class="min-w-full divide-y divide-gray-300 mt-1">
+		<table class="min-w-full divide-y divide-gray-300">
 			<thead>
 				<tr>
 					<Th {handler} orderBy={'donation_date'}>DATE</Th>
@@ -100,7 +100,7 @@
 			</tbody>
 		</table>
 
-		<footer class="mb-20">
+		<footer>
 			<RowCount {handler} />
 			{#if grantList.length > 10}
 				<Pagination {handler} />

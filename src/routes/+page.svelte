@@ -71,7 +71,7 @@
 </script>
 
 <div>
-	<div class="flex justify-center mt-5 sm:px-20 px-2">
+	<div class="flex justify-center mt-5 sm:px-10 px-5">
 		<div class="w-full">
 			<form on:keydown={onKeyDown}>
 				<Search bind:text={search} />
