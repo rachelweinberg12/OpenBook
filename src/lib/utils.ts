@@ -31,3 +31,17 @@ export function urlify(text: string) {
 		return '<a class="hover:underline text-violet-600" href="' + url + '">' + ' [link] ' + '</a>';
 	});
 }
+
+export function checkFilter(donation_causes: string[], causes_in_view: string[]) {
+	if (causes_in_view.length == 0) {
+		return true;
+	}
+	if (donation_causes) {
+		for (let i = 0; i < causes_in_view.length; i++) {
+			if (donation_causes.includes(causes_in_view[i])) {
+				return true;
+			}
+		}
+	}
+	return false;
+}

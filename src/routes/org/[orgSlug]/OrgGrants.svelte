@@ -1,9 +1,11 @@
 <script lang="ts">
 	import { formatLargeNumber } from '$lib/utils';
 	import { formatDate } from '$lib/utils';
+	import { checkFilter } from '$lib/utils';
 	import Tr from '$lib/Tr.svelte';
 	import TagDisplay from '$lib/TagDisplay.svelte';
 	import TdLink from '$lib/TdLink.svelte';
+	import CauseSelect from '$lib/CauseSelect.svelte';
 
 	import { DataHandler } from '@vincjo/datatables';
 	import Th from '@vincjo/datatables/Th.svelte';
@@ -13,20 +15,32 @@
 
 	export let incoming: boolean;
 	export let grantList: any[];
+	let causes_in_view: string[] = [];
+	$: causes_in_view && applyFilter();
+
+	$: applyFilter = () => {
+		if (causes_in_view.length == 0) {
+			handler.setRows(grantList);
+			return;
+		}
+		let filteredData = grantList.filter((row) => checkFilter(row.cause_array, causes_in_view));
+		handler.setRows(filteredData);
+	};
 
 	let handler = new DataHandler(grantList, { rowsPerPage: 10 });
 	$: rows = handler.getRows();
 </script>
 
-<div class="flex justify-center">
+<div class="flex-col justify-center">
+	<CauseSelect bind:selected={causes_in_view} />
 	<div class="w-full">
 		<header class="relative">
 			{#if grantList.length > 10}
-				<div class="my-5"><RowsPerPage {handler} /></div>
+				<div><RowsPerPage {handler} /></div>
 			{/if}
 		</header>
 
-		<table class="min-w-full divide-y divide-gray-300 mt-5">
+		<table class="min-w-full divide-y divide-gray-300 mt-1">
 			<thead>
 				<tr>
 					<Th {handler} orderBy={'donation_date'}>DATE</Th>

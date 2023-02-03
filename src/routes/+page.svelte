@@ -1,12 +1,13 @@
 <script lang="ts">
-	import type { PageData } from './home/$types';
+	import type { PageData } from './$types';
 	import Search from './Search.svelte';
 	import { formatLargeNumber } from '$lib/utils';
 	import { formatDate } from '$lib/utils';
+	import { checkFilter } from '$lib/utils';
 	import Tr from '$lib/Tr.svelte';
 	import TdLink from '$lib/TdLink.svelte';
 	import DataDownload from '$lib/DataDownload.svelte';
-	import CauseFilter from '$lib/CauseFilter.svelte';
+	import CauseSelect from '$lib/CauseSelect.svelte';
 
 	import OrgCardDisplay from './OrgCardDisplay.svelte';
 	import TagDisplay from '$lib/TagDisplay.svelte';
@@ -60,28 +61,13 @@
 	}
 
 	$: applyFilter = () => {
-		console.log('executing apply filter');
-		console.log(causes_in_view);
 		if (causes_in_view.length == 0) {
 			handler.setRows(searchedData);
 			return;
 		}
-		let filteredData = searchedData.filter((row) => checkFilter(row.cause_array));
+		let filteredData = searchedData.filter((row) => checkFilter(row.cause_array, causes_in_view));
 		handler.setRows(filteredData);
 	};
-
-	function checkFilter(donation_causes: string[]) {
-		console.log(causes_in_view);
-		if (causes_in_view.length == 0) {
-			return true;
-		}
-		for (let i = 0; i < causes_in_view.length; i++) {
-			if (donation_causes.includes(causes_in_view[i])) {
-				return true;
-			}
-		}
-		return false;
-	}
 </script>
 
 <div>
@@ -90,7 +76,7 @@
 			<form on:keydown={onKeyDown}>
 				<Search bind:text={search} />
 			</form>
-			<CauseFilter bind:selected={causes_in_view} />
+			<CauseSelect bind:selected={causes_in_view} />
 
 			<header class="mb-1 flex justify-between text-sm sm:text-md md:text-lg">
 				<RowsPerPage {handler} />
