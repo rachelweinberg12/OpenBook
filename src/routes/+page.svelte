@@ -6,6 +6,7 @@
 	import Tr from '$lib/Tr.svelte';
 	import TdLink from '$lib/TdLink.svelte';
 	import DataDownload from '$lib/DataDownload.svelte';
+	import CauseFilter from '$lib/CauseFilter.svelte';
 
 	import OrgCardDisplay from './OrgCardDisplay.svelte';
 	import TagDisplay from '$lib/TagDisplay.svelte';
@@ -20,8 +21,11 @@
 	export let data: PageData;
 
 	let search: string = '';
+	let causes_in_view: string[] = [];
+	$: causes_in_view && applyFilter();
+	let searchedData: Object[] = data.donations;
 
-	let handler = new DataHandler(data.donations, { rowsPerPage: 20 });
+	let handler = new DataHandler(searchedData, { rowsPerPage: 20 });
 	$: rows = handler.getRows();
 
 	function formatSearch() {
@@ -33,12 +37,12 @@
 	function executeSearch() {
 		if (search.length > 0) {
 			searchDonations(formatSearch()).then((res) => {
-				handler.setRows(res);
-				console.log(res);
+				searchedData = res;
 			});
 		} else {
-			handler.setRows(data.donations);
+			searchedData = data.donations;
 		}
+		applyFilter();
 	}
 
 	function debounce(func: (...args: unknown[]) => unknown, delay = 200) {
@@ -54,6 +58,30 @@
 	function onKeyDown(event: KeyboardEvent) {
 		debouncedSearch();
 	}
+
+	$: applyFilter = () => {
+		console.log('executing apply filter');
+		console.log(causes_in_view);
+		if (causes_in_view.length == 0) {
+			handler.setRows(searchedData);
+			return;
+		}
+		let filteredData = searchedData.filter((row) => checkFilter(row.cause_array));
+		handler.setRows(filteredData);
+	};
+
+	function checkFilter(donation_causes: string[]) {
+		console.log(causes_in_view);
+		if (causes_in_view.length == 0) {
+			return true;
+		}
+		for (let i = 0; i < causes_in_view.length; i++) {
+			if (donation_causes.includes(causes_in_view[i])) {
+				return true;
+			}
+		}
+		return false;
+	}
 </script>
 
 <div>
@@ -62,6 +90,7 @@
 			<form on:keydown={onKeyDown}>
 				<Search bind:text={search} />
 			</form>
+			<CauseFilter bind:selected={causes_in_view} />
 
 			<header class="mb-1 flex justify-between">
 				<RowsPerPage {handler} />
@@ -81,6 +110,7 @@
 
 				<tbody class="divide-y-4 divide-white bg-white border-collapse">
 					{#each $rows as row}
+						<!-- {#if checkFilter(row.cause_array)} -->
 						<Tr>
 							<td class="text-left max-w-xxs sm:max-w-xs pl-3"
 								><a href={`/donations/${row.donation_id}`} class="min-w-full block">
@@ -118,6 +148,7 @@
 								</a>
 							</td>
 						</Tr>
+						<!-- {/if} -->
 					{/each}
 				</tbody>
 			</table>

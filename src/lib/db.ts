@@ -92,6 +92,48 @@ export async function getDonors() {
 	return data ?? [];
 }
 
+export async function getRecipients() {
+	const { data, error } = await supabase.rpc('get_recipients');
+	if (error) {
+		console.log('error in getRecipients', error);
+	}
+	return data ?? [];
+}
+
+export async function sendFeedback(feedback: string, email: string) {
+	const { error } = await supabase.from('feedback').insert({ feedback: feedback, email: email });
+	if (error) {
+		console.log(error);
+	}
+}
+
+export async function getDonorNames() {
+	const { data, error } = await supabase.rpc('get_donor_names');
+	if (error) {
+		console.log(error);
+	}
+	return data ?? [];
+}
+
+export async function getRecipientNames() {
+	const { data, error } = await supabase.rpc('get_recipient_names');
+	if (error) {
+		console.log(error);
+	}
+	return data ?? [];
+}
+
+export async function getAllDonationData() {
+	const { data, error } = await supabase
+		.from('donations')
+		.select()
+		.order('donation_date', { ascending: false });
+	if (error) {
+		console.log('error in getDonations', error);
+	}
+	return data ?? [];
+}
+
 /*
 export function cs_getDonors(data: []) {
 		if (data) {
@@ -114,17 +156,6 @@ export function cs_getDonors(data: []) {
 
 	return donors;
 }
-*/
-
-export async function getRecipients() {
-	const { data, error } = await supabase.rpc('get_recipients');
-	if (error) {
-		console.log('error in getRecipients', error);
-	}
-	return data ?? [];
-}
-
-/*
 async function getCauseAreas() {
 	const { data, error } = await supabase.from('donationsea').select();
 	let causeAreas = [];
@@ -156,30 +187,7 @@ export async function fixCauseAreas() {
 		console.log('updated', causeAreas[i].id);
 	}
 }
-*/
 
-export async function sendFeedback(feedback: string, email: string) {
-	const { error } = await supabase.from('feedback').insert({ feedback: feedback, email: email });
-	if (error) {
-		console.log(error);
-	}
-}
-
-export async function getDonorNames() {
-	const { data, error } = await supabase.rpc('get_donor_names');
-	if (error) {
-		console.log(error);
-	}
-	return data ?? [];
-}
-
-export async function getRecipientNames() {
-	const { data, error } = await supabase.rpc('get_recipient_names');
-	if (error) {
-		console.log(error);
-	}
-	return data ?? [];
-}
 
 export async function addOpenPhil() {
 	const { data, error } = await supabase.from('openphilgrants').select();
@@ -364,17 +372,6 @@ export async function addSff() {
 		}
 	}
 }
-
-export async function getAllDonationData() {
-	const { data, error } = await supabase
-		.from('donations')
-		.select(
-			'donation_id, donor, donee, amount, donation_date, cause_array, amount_original_currency, original_currency, currency_conversion_date, currency_conversion_basis, fraction, donation_date_precision, donation_date_basis, url, donor_cause_area_url, notes, donation_process, intended_use_of_funds_category, intended_use_of_funds, intended_funding_timeframe_in_months, donor_donee_reason, donor_amount_reason, donor_timing_reason, donor_next_donation_thoughts, donor_retrospective, payment_modality, match_eligible, goal_amount, influencer, employer_match, matching_employer, special_donation_reason, donation_earmark, affected_countries, affected_states, affected_cities, affected_regions, donation_announcement_date, donation_announcement_date_precision, donation_announcement_url, predictions, is_contractwork'
-		);
-	if (error) {
-		console.log(error);
-	}
-	return data ?? [];
-}
+*/
 
 export type Donee = Database[];
