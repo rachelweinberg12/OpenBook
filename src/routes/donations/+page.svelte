@@ -3,6 +3,7 @@
 	import { createDonation } from '$lib/db';
 	import type { PageData } from './$types';
 	import Autocomplete from '$lib/Autocomplete.svelte';
+	import CauseSelect from '$lib/CauseSelect.svelte';
 	export let data: PageData;
 
 	// Default to today's date e.g. '202  3-01-15', corrected for timezone
