@@ -100,7 +100,7 @@
 								><a href={`/donations/${row.donation_id}`} class="min-w-full block">
 									{formatDate(row.donation_date)}
 								</a>
-								<div class="lg:hidden text-left sm:text-xl py-3 ml-2">
+								<div class="lg:hidden text-left text-xl py-3 ml-2">
 									<a
 										class="mt-1 truncate  hover:underline max-w-full"
 										href={`/org/${encodeURI(row.donor.replaceAll('/', '^'))}`}>{row.donor}</a
@@ -120,8 +120,9 @@
 								</div>
 							</td>
 							<td class="text-right px-5 align-top lg:align-middle"
-								><a class="block lg:h-full h-24 min-w-full" href={`/donations/${row.donation_id}`}
-									>{formatLargeNumber(row.amount)}</a
+								><a
+									class="block lg:h-full h-36 min-w-full text-xl"
+									href={`/donations/${row.donation_id}`}>{formatLargeNumber(row.amount)}</a
 								></td
 							>
 							<TdLink url={`/org/${encodeURI(row.donor.replaceAll('/', '^'))}`}>{row.donor}</TdLink>

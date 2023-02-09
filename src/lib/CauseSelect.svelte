@@ -29,14 +29,14 @@
 		<p let:option slot="selected" class="max-w-min text-md">
 			<Tag tag={option} />
 		</p>
-		<div slot="expand-icon" class="hover:cursor-pointer" on:click={() => (open = !open)}>
+		<div slot="expand-icon" class="hover:cursor-pointer " on:click={() => (open = !open)}>
 			<svg
 				xmlns="http://www.w3.org/2000/svg"
 				fill="none"
 				viewBox="0 0 24 24"
-				stroke-width="1.5"
+				stroke-width="1.8"
 				stroke="currentColor"
-				class="w-4 h-6 mr-2 ml-1"
+				class="w-4 h-6 mr-2 ml-1 text-gray-500"
 			>
 				<path stroke-linecap="round" stroke-linejoin="round" d="M19.5 8.25l-7.5 7.5-7.5-7.5" />
 			</svg>

@@ -14,8 +14,8 @@
 	}
 </script>
 
-<div class="text-center">
-	<h1 class="mx-10 lg:mx-20 mb-8 mt-12 lg:my-12 text-3xl md:text-5xl">
+<div>
+	<h1 class="mx-10 lg:mx-20 mb-8 mt-12 lg:my-12 text-3xl md:text-5xl text-center">
 		{data.name}
 	</h1>
 	{#if donee_data}
@@ -58,7 +58,7 @@
 	<div class="my-5 flex flex-col justify-center gap-10">
 		{#if data.incomings.length > 0}
 			<div>
-				<h3 class="text-xl sm:text-2xl md:text-3xl mb-3">
+				<h3 class="text-xl sm:text-2xl md:text-3xl mb-3 text-center">
 					Incoming Grants | Total Received: ${formatLargeNumber(sum_grants(data.incomings))}
 				</h3>
 				<OrgGrants grantList={data.incomings} incoming={true} />
@@ -66,7 +66,7 @@
 		{/if}
 		{#if data.outgoings.length > 0}
 			<div>
-				<h3 class="text-xl sm:text-2xl md:text-3xl mb-3">
+				<h3 class="text-xl sm:text-2xl md:text-3xl mb-3 text-center">
 					Outgoing Grants | Total Sent: ${formatLargeNumber(sum_grants(data.outgoings))}
 				</h3>
 				<OrgGrants grantList={data.outgoings} incoming={false} />

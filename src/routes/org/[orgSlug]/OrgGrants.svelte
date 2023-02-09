@@ -31,13 +31,10 @@
 	$: rows = handler.getRows();
 </script>
 
-<div class="flex-col justify-center sm:px-10 px-5 mb-10">
-	<CauseSelect bind:selected={causes_in_view} placeholder="Filter by cause area" />
+<div class="sm:px-10 px-5 mb-10">
 	<div class="w-full">
-		<header class="mt-4 flex justify-between text-sm sm:text-md md:text-lg">
-			{#if grantList.length > 10}
-				<div><RowsPerPage {handler} /></div>
-			{/if}
+		<header class="my-4 flex justify-between text-sm sm:text-md md:text-lg">
+			<CauseSelect bind:selected={causes_in_view} placeholder="Filter by cause area" />
 		</header>
 
 		<table class="min-w-full divide-y divide-gray-300">
@@ -60,7 +57,7 @@
 							><a href={`/donations/${row.donation_id}`} class="min-w-full block">
 								{formatDate(row.donation_date)}
 							</a>
-							<div class="lg:hidden text-left sm:text-xl py-3 ml-2">
+							<div class="lg:hidden text-left text-xl py-3 ml-2">
 								{#if incoming}
 									<a class="mb-2 truncate hover:underline" href={`/org/${encodeURI(row.donor)}`}>
 										{row.donor}
@@ -81,8 +78,9 @@
 							</div>
 						</td>
 						<td class="text-right px-5 align-top lg:align-middle"
-							><a class="block lg:h-full h-20 min-w-full" href={`/donations/${row.donation_id}`}
-								>{formatLargeNumber(row.amount)}</a
+							><a
+								class="block lg:h-full h-28 min-w-full text-xl"
+								href={`/donations/${row.donation_id}`}>{formatLargeNumber(row.amount)}</a
 							></td
 						>
 						{#if incoming}
@@ -100,11 +98,16 @@
 			</tbody>
 		</table>
 
-		<footer>
-			<RowCount {handler} />
-			{#if grantList.length > 10}
-				<Pagination {handler} />
-			{/if}
+		<footer class="mb-10 flex sm:justify-between sm:flex-row flex-col text-left">
+			<div>
+				<RowCount {handler} />
+				{#if grantList.length > 10}
+					<Pagination {handler} />
+				{/if}
+			</div>
+			<div class="mt-3">
+				{#if grantList.length > 10}<RowsPerPage {handler} />{/if}
+			</div>
 		</footer>
 	</div>
 </div>
