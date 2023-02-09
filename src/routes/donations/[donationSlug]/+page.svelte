@@ -3,6 +3,8 @@
 	import { onMount } from 'svelte';
 	import DetailIcon from '$lib/DetailIcon.svelte';
 	import TagDisplay from '$lib/TagDisplay.svelte';
+	import { formatDate } from '$lib/utils';
+	import { formatLargeNumber } from '$lib/utils';
 
 	import { urlify } from '$lib/utils';
 	export let data: PageData;
@@ -47,13 +49,13 @@
 		{#if donation.donation_date}
 			<div class="flex flex-row gap-5">
 				<DetailIcon category="date" />
-				<p class="max-w-md">{donation.donation_date}</p>
+				<p class="max-w-md">{formatDate(donation.donation_date)}</p>
 			</div>
 		{/if}
 		{#if donation.amount}
 			<div class="flex flex-row gap-5">
 				<DetailIcon category="amount" />
-				{donation.amount}
+				{formatLargeNumber(donation.amount)}
 			</div>
 		{/if}
 		{#if donation.cause_array}
@@ -103,7 +105,7 @@
 <div class="fixed sm:right-10 right-8  bottom-12 group z-20">
 	<a
 		href="/donations/{donation.donation_id}/edit"
-		class="bg-rose-400 rounded-full py-5 px-3 shadow-md text-white"
+		class="bg-rose-400 rounded-full py-4 px-3 shadow-md text-white"
 	>
 		<svg
 			xmlns="http://www.w3.org/2000/svg"
@@ -111,7 +113,7 @@
 			viewBox="0 0 24 24"
 			stroke-width="1.5"
 			stroke="currentColor"
-			class="w-8 h-8 inline"
+			class="w-6 h-6 inline"
 		>
 			<path
 				stroke-linecap="round"

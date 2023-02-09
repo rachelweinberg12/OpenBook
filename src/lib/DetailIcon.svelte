@@ -40,7 +40,9 @@
 			donee_site: 'Organization website',
 			donate_url: 'Site where you can donate to this organization',
 			org_review: "Review of organization's effectiveness",
-			reason: 'Reason for donation'
+			reason: 'Reason for donation',
+			timing_reason: 'Reason for timing of donation',
+			donation_process: 'Donation process'
 		}[category] ?? '';
 </script>
 
@@ -51,7 +53,7 @@
 		viewBox="0 0 24 24"
 		stroke-width="1.5"
 		stroke="currentColor"
-		class="w-7 h-7"
+		class="w-6 h-6"
 	>
 		<path stroke-linecap="round" stroke-linejoin="round" d={icon_code} />
 	</svg>
