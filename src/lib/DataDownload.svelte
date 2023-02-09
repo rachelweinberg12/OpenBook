@@ -114,17 +114,18 @@
 	};
 </script>
 
-<div class="relative bottom-1">
-	<Button
+<div class="fixed sm:right-10 right-6 bottom-8 group z-20">
+	<button
 		on:click={() =>
 			csvGenerator(data, Object.keys(data[0]), Object.keys(data[0]), 'openbookdonations.csv')}
+		class="bg-rose-400 rounded-full p-3 shadow-md text-white"
 	>
 		<svg
 			xmlns="http://www.w3.org/2000/svg"
 			fill="none"
 			viewBox="0 0 24 24"
-			stroke-width="1.5"
-			stroke="currentColor"
+			stroke-width="1.8"
+			stroke="white"
 			class="w-6 h-6 inline"
 		>
 			<path
@@ -133,6 +134,6 @@
 				d="M3 16.5v2.25A2.25 2.25 0 005.25 21h13.5A2.25 2.25 0 0021 18.75V16.5M16.5 12L12 16.5m0 0L7.5 12m4.5 4.5V3"
 			/>
 		</svg>
-		<p class="hidden sm:inline">Download</p>
-	</Button>
+		<p class="hidden group-hover:inline">Download CSV</p>
+	</button>
 </div>

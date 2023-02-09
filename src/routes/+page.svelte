@@ -73,15 +73,13 @@
 <div>
 	<div class="flex justify-center mt-5 sm:px-10 px-5">
 		<div class="w-full">
-			<form on:keydown={onKeyDown}>
-				<Search bind:text={search} />
-			</form>
-			<CauseSelect bind:selected={causes_in_view} placeholder="Filter by cause area" />
-
-			<header class="mt-5 flex justify-between text-sm sm:text-md md:text-lg">
-				<RowsPerPage {handler} />
-				<DataDownload />
+			<header class="mb-5">
+				<form on:keydown={onKeyDown}>
+					<Search bind:text={search} />
+				</form>
+				<CauseSelect bind:selected={causes_in_view} placeholder="Filter by cause area" />
 			</header>
+			<DataDownload />
 
 			<table class="min-w-full divide-y divide-gray-300">
 				<thead>
@@ -139,9 +137,14 @@
 				</tbody>
 			</table>
 
-			<footer class="mb-10">
-				<RowCount {handler} />
-				<Pagination {handler} />
+			<footer class="mb-10 flex sm:justify-between sm:flex-row flex-col">
+				<div>
+					<RowCount {handler} />
+					<Pagination {handler} />
+				</div>
+				<div class="mt-3">
+					<RowsPerPage {handler} />
+				</div>
 			</footer>
 		</div>
 	</div>
