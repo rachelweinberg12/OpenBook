@@ -78,7 +78,7 @@
 			</form>
 			<CauseSelect bind:selected={causes_in_view} placeholder="Filter by cause area" />
 
-			<header class="mt-4 flex justify-between text-sm sm:text-md md:text-lg">
+			<header class="mt-5 flex justify-between text-sm sm:text-md md:text-lg">
 				<RowsPerPage {handler} />
 				<DataDownload />
 			</header>

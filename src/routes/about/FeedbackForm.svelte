@@ -17,22 +17,26 @@
 	<div>
 		<label for="email">Email</label>
 		<TextInput id="email" placeholder="hi@example.com" bind:text={email} type="text" />
-		<label for="feedback">Feedback</label>
-		<textarea
-			id="feedback"
-			placeholder="Let me know what you think!"
-			class="p-2 border-2 h-20 w-full border-gray-300 rounded outline-none focus:ring focus:ring-violet-300 mb-3 focus:border-gray-300 "
-			bind:value={feedback}
-		/>
-		<br />
-		<div class="flex justify-center">
-			<Button
-				on:click={() => {
-					sendFeedback(feedback, email);
-					feedback = '';
-					email = '';
-				}}>Submit</Button
-			>
+		<div class="mt-5">
+			<label for="feedback">Feedback</label>
+
+			<textarea
+				id="feedback"
+				placeholder="Let me know what you think!"
+				class="p-2 h-20 w-full border-gray-500 rounded outline-none focus:ring focus:ring-violet-300 mb-3 focus:border-gray-500"
+				bind:value={feedback}
+			/>
+			<div>
+				<div class="flex justify-center">
+					<Button
+						on:click={() => {
+							sendFeedback(feedback, email);
+							feedback = '';
+							email = '';
+						}}>Submit</Button
+					>
+				</div>
+			</div>
 		</div>
 	</div>
 </form>

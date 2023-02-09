@@ -25,7 +25,7 @@
 </script>
 
 <input
-	class="peer px-3 h-8 sm:h-12 border-2 border-gray-300 w-full rounded-md outline-none focus:ring focus:ring-violet-300 focus:border-gray-300"
+	class="peer px-3 h-8 sm:h-12 border-gray-500 w-full rounded outline-none focus:ring focus:ring-violet-300 focus:border-gray-500"
 	type="text"
 	autocomplete="off"
 	id="input"

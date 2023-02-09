@@ -3,8 +3,8 @@
 @tailwind utilities;
 
 div.multiselect {
-	border-color: #d1d5db;
-	border-width: 2px;
+	border-color: #6b7280;
+	border-width: 1px;
 	border-style: solid;
 	border-radius: 0.25rem;
 	outline: none;
