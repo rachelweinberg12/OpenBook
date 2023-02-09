@@ -100,7 +100,7 @@
 		{/if}
 	</div>
 </div>
-<div class="fixed sm:right-10 bottom-12 group z-20">
+<div class="fixed sm:right-10 right-8  bottom-12 group z-20">
 	<a
 		href="/donations/{donation.donation_id}/edit"
 		class="bg-rose-400 rounded-full py-5 px-3 shadow-md text-white"
