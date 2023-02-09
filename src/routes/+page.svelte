@@ -121,7 +121,7 @@
 							</td>
 							<td class="text-right px-5 align-top lg:align-middle"
 								><a
-									class="block lg:h-full h-36 min-w-full text-xl"
+									class="block lg:h-full h-36 min-w-full text-lg lg:text-md"
 									href={`/donations/${row.donation_id}`}>{formatLargeNumber(row.amount)}</a
 								></td
 							>
@@ -133,12 +133,11 @@
 								</a>
 							</td>
 						</Tr>
-						<!-- {/if} -->
 					{/each}
 				</tbody>
 			</table>
 
-			<footer class="mb-10 flex sm:justify-between sm:flex-row flex-col">
+			<footer class="mb-20 flex sm:justify-between sm:flex-row flex-col">
 				<div>
 					<RowCount {handler} />
 					<Pagination {handler} />

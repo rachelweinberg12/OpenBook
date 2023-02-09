@@ -3,7 +3,7 @@
 	let showMenu = false;
 </script>
 
-<header class="bg-gradient-to-l from-rose-400 to-violet-400 shadow-lg w-full sticky inset-0 z-10">
+<header class="bg-gradient-to-l from-rose-400 to-violet-400 shadow-lg w-full sticky inset-0 z-30">
 	<a href="/" class="font-limelight text-4xl sm:text-5xl font-bold text-white p-2 m-3 absolute"
 		>OpenBook</a
 	>
@@ -59,7 +59,7 @@
 				</svg>
 			</div>
 			{#if showMenu}
-				<div class="fixed top-0 left-0 w-full h-full bg-violet-400 z-10">
+				<div class="fixed top-0 left-0 w-full h-full bg-violet-400 z-30">
 					<svg
 						xmlns="http://www.w3.org/2000/svg"
 						fill="none"

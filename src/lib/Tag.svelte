@@ -20,7 +20,7 @@
 </script>
 
 <p
-	class={`font-thin rounded-2xl h-6 px-2 mx-1 truncate overflow-hidden ${color} shadow-md`}
+	class={`font-thin rounded-2xl px-2 mx-1 h-6 truncate overflow-hidden ${color} shadow-md flex flex-col justify-center`}
 	title={tag}
 >
 	{tag}
