@@ -1,5 +1,5 @@
 <script lang="ts">
-	export let text: string | null = null;
+	export let text: any | null = null;
 </script>
 
 <input

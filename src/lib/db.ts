@@ -134,6 +134,24 @@ export async function getAllDonationData() {
 	return data ?? [];
 }
 
+export async function updateDonation(donation: DonationInsert) {
+	const { error } = await supabase
+		.from('donations')
+		.update({
+			donor: donation.donor,
+			donee: donation.donee,
+			cause_array: donation.cause_array,
+			cause_string: donation.cause_string,
+			donation_date: donation.donation_date,
+			amount: donation.amount,
+			url: donation.url
+		})
+		.eq('donation_id', donation.donation_id);
+	if (error) {
+		console.log(error);
+	}
+}
+
 /*
 export function cs_getDonors(data: []) {
 		if (data) {

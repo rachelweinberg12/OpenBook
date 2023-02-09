@@ -68,7 +68,7 @@
 				autocomplete="off"
 				id="donation_date"
 				name="donation_date"
-				bind:value={donation_date}
+				bind:text={donation_date}
 			/>
 			<label class="mt-5" for="url">URL</label>
 			<TextInput type="text" autocomplete="off" id="url" name="url" bind:value={url} />
