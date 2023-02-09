@@ -12,7 +12,7 @@
 	></script>
 </svelte:head>
 
-<div class="app font-raleway">
+<div class="app font-josefin">
 	<Header />
 
 	<main>
