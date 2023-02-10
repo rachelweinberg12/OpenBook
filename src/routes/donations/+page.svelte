@@ -61,9 +61,17 @@
 			<label class="mt-5" for="cause">Causes</label>
 			<CauseSelect bind:selected={cause_array} />
 			<label class="mt-5" for="amount">Amount (USD)</label>
-			<TextInput type="number" autocomplete="off" id="amount" name="amount" bind:value={amount} />
+			<TextInput
+				required
+				type="number"
+				autocomplete="off"
+				id="amount"
+				name="amount"
+				bind:value={amount}
+			/>
 			<label class="mt-5" for="donation_date">Donation Date</label>
 			<TextInput
+				required
 				type="text"
 				autocomplete="off"
 				id="donation_date"

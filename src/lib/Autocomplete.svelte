@@ -1,5 +1,4 @@
 <script lang="ts">
-	import TextInput from '$lib/TextInput.svelte';
 	export let options: string[];
 	export let value: string;
 	let filteredOptions: string[] = [];
@@ -30,6 +29,7 @@
 	autocomplete="off"
 	id="input"
 	name="input"
+	required
 	bind:value
 	on:input={() => filterOptions(value)}
 />

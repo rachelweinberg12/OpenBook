@@ -57,19 +57,41 @@
 			on:keydown={handleKeyDown}
 		>
 			<label class="z-0" for="donor">Donor</label>
-			<TextInput type="text" autocomplete="off" id="donor" name="donor" bind:text={donor} />
+			<TextInput
+				required
+				type="text"
+				autocomplete="off"
+				id="donor"
+				name="donor"
+				bind:text={donor}
+			/>
 			<label class="z-0 mt-5" for="recipient">Recipient</label>
-			<TextInput type="text" autocomplete="off" id="donee" name="donee" bind:text={donee} />
+			<TextInput
+				required
+				type="text"
+				autocomplete="off"
+				id="donee"
+				name="donee"
+				bind:text={donee}
+			/>
 			<label class="mt-5" for="donation_date">Donation Date</label>
 			<TextInput
 				type="text"
 				autocomplete="off"
 				id="donation_date"
 				name="donation_date"
+				required
 				bind:text={donation_date}
 			/>
 			<label class="mt-5" for="amount">Amount (USD)</label>
-			<TextInput type="number" autocomplete="off" id="amount" name="amount" bind:text={amount} />
+			<TextInput
+				type="number"
+				autocomplete="off"
+				id="amount"
+				name="amount"
+				required
+				bind:text={amount}
+			/>
 			<label class="mt-5" for="cause">Causes</label>
 			<CauseSelect bind:selected={cause_array} />
 			<label class="mt-5" for="url">URL</label>
