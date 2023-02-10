@@ -56,3 +56,5 @@ export function arrayToString(array: string[]) {
 	}
 	return string;
 }
+
+export const dateRegex = new RegExp('^d{4}-(0[1-9]|1[012])-(0[1-9]|[12][0-9]|3[01])$');

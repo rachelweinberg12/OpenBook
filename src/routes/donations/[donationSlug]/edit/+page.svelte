@@ -2,9 +2,11 @@
 	import type { PageData } from './$types';
 	import CauseSelect from '$lib/CauseSelect.svelte';
 	import TextInput from '$lib/TextInput.svelte';
+	import RequiredStar from '$lib/RequiredStar.svelte';
 	import { arrayToString } from '$lib/utils';
 	import { goto } from '$app/navigation';
 	import { updateDonation } from '$lib/db';
+	import { dateRegex } from '$lib/utils';
 
 	export let data: PageData;
 	const donation = data.donation[0];
@@ -23,6 +25,9 @@
 
 	async function onSubmit() {
 		console.log('onSubmit');
+		if (cause_array.length == 0) {
+			cause_array = ['other'];
+		}
 		let cause_string = arrayToString(cause_array);
 		let donation_id = donation.donation_id;
 		const updatedDonation = {
@@ -56,7 +61,7 @@
 			class="flex flex-col w-1/2 gap-1"
 			on:keydown={handleKeyDown}
 		>
-			<label class="z-0" for="donor">Donor</label>
+			<label class="z-0" for="donor"><RequiredStar />Donor</label>
 			<TextInput
 				required
 				type="text"
@@ -65,7 +70,7 @@
 				name="donor"
 				bind:text={donor}
 			/>
-			<label class="z-0 mt-5" for="recipient">Recipient</label>
+			<label class="z-0 mt-5" for="recipient"><RequiredStar />Recipient</label>
 			<TextInput
 				required
 				type="text"
@@ -74,16 +79,23 @@
 				name="donee"
 				bind:text={donee}
 			/>
-			<label class="mt-5" for="donation_date">Donation Date</label>
+			<label class="mt-5" for="donation_date"
+				><RequiredStar />Donation Date
+				<p class="text-gray-700 font-thin inline">(yyyy-mm-dd)</p></label
+			>
 			<TextInput
 				type="text"
 				autocomplete="off"
 				id="donation_date"
 				name="donation_date"
 				required
+				pattern={dateRegex}
 				bind:text={donation_date}
 			/>
-			<label class="mt-5" for="amount">Amount (USD)</label>
+			<label class="mt-5" for="amount"
+				><RequiredStar />Amount
+				<p class="text-gray-700 font-thin inline">(USD)</p></label
+			>
 			<TextInput
 				type="number"
 				autocomplete="off"
