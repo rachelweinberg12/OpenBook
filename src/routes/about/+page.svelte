@@ -20,11 +20,6 @@
 				>available on Github</a
 			>.
 		</p>
-		<h3 id="some-donations-are-wrong-or-missing-">Some donations are wrong or missing!</h3>
-		<p>
-			Sorry! We’d like to allow people to fix and add new donations to the database, in the future.
-			Stay tuned!
-		</p>
 		<h3 id="who-built-this-">Who built this?</h3>
 		<p>Rachel Weinberg, with help from Austin Chen.</p>
 		<p>
