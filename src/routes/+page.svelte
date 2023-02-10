@@ -70,7 +70,7 @@
 	};
 </script>
 
-<div>
+<div class="mb-28">
 	<div class="flex justify-center mt-5 sm:px-10 px-5">
 		<div class="w-full">
 			<header class="mb-5">
@@ -85,7 +85,7 @@
 				<thead>
 					<tr>
 						<Th {handler} orderBy={'donation_date'}>DATE</Th>
-						<Th {handler} orderBy={'amount'}>AMOUNT</Th>
+						<Th {handler} orderBy={'amount'}>{'AMOUNT'}</Th>
 						<th scope="col" class="border-b border-gray-200 hidden lg:table-cell">DONOR</th>
 						<th scope="col" class="border-b border-gray-200 hidden lg:table-cell">RECIPIENT</th>
 						<th scope="col" class="border-b border-gray-200 hidden lg:table-cell">CAUSE AREAS</th>
@@ -121,8 +121,8 @@
 							</td>
 							<td class="text-right px-5 align-top lg:align-middle"
 								><a
-									class="block lg:h-full h-36 min-w-full text-lg lg:text-md"
-									href={`/donations/${row.donation_id}`}>{formatLargeNumber(row.amount)}</a
+									class="block lg:h-full h-36 min-w-full text-md"
+									href={`/donations/${row.donation_id}`}>{'$' + formatLargeNumber(row.amount)}</a
 								></td
 							>
 							<TdLink url={`/org/${encodeURI(row.donor.replaceAll('/', '^'))}`}>{row.donor}</TdLink>
@@ -137,7 +137,7 @@
 				</tbody>
 			</table>
 
-			<footer class="mb-20 flex sm:justify-between sm:flex-row flex-col">
+			<footer class="mb-10 flex sm:justify-between sm:flex-row flex-col">
 				<div>
 					<RowCount {handler} />
 					<Pagination {handler} />

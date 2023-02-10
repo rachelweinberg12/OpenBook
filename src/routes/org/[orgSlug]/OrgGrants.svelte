@@ -79,8 +79,8 @@
 						</td>
 						<td class="text-right px-5 align-top lg:align-middle"
 							><a
-								class="block lg:h-full h-28 min-w-full text-lg lg:text-md"
-								href={`/donations/${row.donation_id}`}>{formatLargeNumber(row.amount)}</a
+								class="block lg:h-full h-28 min-w-full text-md"
+								href={`/donations/${row.donation_id}`}>{'$' + formatLargeNumber(row.amount)}</a
 							></td
 						>
 						{#if incoming}
