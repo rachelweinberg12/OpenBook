@@ -24,7 +24,11 @@
 		<p>Rachel Weinberg, with help from Austin Chen.</p>
 		<p>
 			If you have questions or feedback (or if you're looking to hire a frontend dev!), reach out to
-			<a href="mailto:rachel.weinberg12@gmail.com"> rachel.weinberg12@gmail.com</a>.
+			<a href="mailto:rachel.weinberg12@gmail.com"> rachel.weinberg12@gmail.com</a>. Disclosure in
+			the spirit of this project: I've recieved funding from Open Phlanthropy and the Centre for
+			Effective Altruism for my work organizing university EA groups, and recieved a grant from the
+			Long-Term Future Fund for my time learning web development. I built this site while not on any
+			grants.
 		</p>
 		<hr class="h-0.5 bg-gray-500" />
 		<FeedbackForm />

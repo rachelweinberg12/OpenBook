@@ -83,7 +83,7 @@
 
 			<table class="min-w-full divide-y divide-gray-300">
 				<thead>
-					<tr>
+					<tr class="text-left">
 						<Th {handler} orderBy={'donation_date'}>DATE</Th>
 						<Th {handler} orderBy={'amount'}>{'AMOUNT'}</Th>
 						<th scope="col" class="border-b border-gray-200 hidden lg:table-cell">DONOR</th>
