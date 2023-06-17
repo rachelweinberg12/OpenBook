@@ -6,15 +6,17 @@
 	import { arrayToString } from '$lib/utils';
 	import { goto } from '$app/navigation';
 	import { updateDonation } from '$lib/db';
-	import { dateRegex } from '$lib/utils';
+	import { isMatch } from 'date-fns';
 
 	export let data: PageData;
 	const donation = data.donation[0];
 
 	let donor = donation.donor;
 	let donee = donation.donee;
-	let cause_array = donation.cause_array;
+	let cause_array = donation.cause_array ?? [];
 	let donation_date = donation.donation_date;
+	console.log(donation_date);
+	console.log(isMatch(donation_date ?? '', 'yyyy-mm-dd'));
 	let amount = donation.amount;
 	let url = donation.url;
 	let notes = donation.notes;
@@ -23,9 +25,14 @@
 	let reason = donation.donor_donee_reason;
 	let timing_reason = donation.donor_timing_reason;
 
+	$: errorMessage =
+		donation_date && !isMatch(donation_date, 'yyyy-mm-dd')
+			? 'Date must be in the format yyyy-mm-dd'
+			: null;
+
 	async function onSubmit() {
 		console.log('onSubmit');
-		if (cause_array.length == 0) {
+		if (!cause_array || cause_array.length == 0) {
 			cause_array = ['other'];
 		}
 		let cause_string = arrayToString(cause_array);
@@ -89,9 +96,11 @@
 				id="donation_date"
 				name="donation_date"
 				required
-				pattern={dateRegex}
 				bind:text={donation_date}
 			/>
+			{#if errorMessage !== null}
+				<p class="text-red-500 text-sm text-center">{errorMessage}</p>
+			{/if}
 			<label class="mt-5" for="amount"
 				><RequiredStar />Amount
 				<p class="text-gray-700 font-thin inline">(USD)</p></label
@@ -139,7 +148,7 @@
 				<button
 					type="submit"
 					class="bg-violet-400 py-2 px-3 rounded-md shadow-sm hover:cursor-pointer hover:shadow-xl text-white relative bottom-1"
-					>Update Donation</button
+					disabled={errorMessage !== null}>Update Donation</button
 				>
 			</div>
 		</form>

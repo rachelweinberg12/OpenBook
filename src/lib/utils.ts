@@ -24,8 +24,8 @@ export function formatDate(date: string) {
 }
 
 export function urlify(text: string) {
-	var urlRegex = new RegExp(
-		/(([a-z]+:\/\/)?(([a-z0-9\-]+\.)+([a-z]{2}|aero|arpa|biz|com|coop|edu|gov|info|int|jobs|mil|museum|name|nato|net|org|pro|travel|local|internal))(:[0-9]{1,5})?(\/[a-z0-9_\-\.~]+)*(\/([a-z0-9_\-\.]*)(\?[a-z0-9+_\-\.%=&amp;]*)?)?(#[a-zA-Z0-9!$&'()*+.=-_~:@/?]*)?)(\s+|$)/gi
+	const urlRegex = new RegExp(
+		/(([a-z]+:\/\/)?(([a-z0-9-]+\.)+([a-z]{2}|aero|arpa|biz|com|coop|edu|gov|info|int|jobs|mil|museum|name|nato|net|org|pro|travel|local|internal))(:[0-9]{1,5})?(\/[a-z0-9_\-.~]+)*(\/([a-z0-9_\-.]*)(\?[a-z0-9+_\-.%=&amp;]*)?)?(#[a-zA-Z0-9!$&'()*+.=-_~:@/?]*)?)(\s+|$)/gi
 	);
 	return text.replace(urlRegex, function (url) {
 		return '<a class="hover:underline text-violet-500" href="' + url + '">' + ' [link]' + '</a> ';
@@ -56,5 +56,3 @@ export function arrayToString(array: string[]) {
 	}
 	return string;
 }
-
-export const dateRegex = new RegExp('^d{4}-(0[1-9]|1[012])-(0[1-9]|[12][0-9]|3[01])$');

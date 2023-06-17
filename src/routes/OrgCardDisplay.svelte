@@ -1,6 +1,6 @@
 <script lang="ts">
 	import OrgCard from './OrgCard.svelte';
-	export let orgList: [];
+	export let orgList: { name: string; total: number }[] = [];
 	export let title: string;
 	let interval = 5;
 	let innerWidth = 0;
