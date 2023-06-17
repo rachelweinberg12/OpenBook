@@ -3,11 +3,11 @@
 	import { createDonation } from '$lib/db';
 	import { arrayToString } from '$lib/utils';
 	import type { PageData } from './$types';
-	import { dateRegex } from '$lib/utils';
 	import RequiredStar from '$lib/RequiredStar.svelte';
 	import Autocomplete from '$lib/Autocomplete.svelte';
 	import CauseSelect from '$lib/CauseSelect.svelte';
 	import TextInput from '$lib/TextInput.svelte';
+	import { isMatch } from 'date-fns';
 	export let data: PageData;
 
 	// Default to today's date e.g. '202  3-01-15', corrected for timezone
@@ -42,6 +42,11 @@
 		goto(`/donations/${newId}`);
 	}
 
+	$: errorMessage =
+		donation_date && !isMatch(donation_date, 'yyyy-mm-dd')
+			? 'Date must be in the format yyyy-mm-dd'
+			: null;
+
 	const handleKeyDown = (event: KeyboardEvent) => {
 		if (event.key == 'Enter') {
 			event.preventDefault();
@@ -67,16 +72,17 @@
 				><RequiredStar />Donation Date
 				<p class="text-gray-700 font-thin inline">(yyyy-mm-dd)</p></label
 			>
-
 			<TextInput
 				required
-				pattern={dateRegex}
 				type="text"
 				autocomplete="off"
 				id="donation_date"
 				name="donation_date"
 				bind:text={donation_date}
 			/>
+			{#if errorMessage !== null}
+				<p class="text-red-500 text-sm text-center">{errorMessage}</p>
+			{/if}
 			<label class="mt-5" for="amount"
 				><RequiredStar />Amount
 				<p class="text-gray-700 font-thin inline">(USD)</p></label
@@ -97,7 +103,7 @@
 				<button
 					type="submit"
 					class="bg-violet-400 py-2 px-3 rounded-md shadow-sm hover:cursor-pointer hover:shadow-xl text-white relative bottom-1"
-					>Create</button
+					disabled={errorMessage !== null}>Create</button
 				>
 			</div>
 		</form>
