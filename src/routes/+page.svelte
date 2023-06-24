@@ -1,7 +1,7 @@
 <script lang="ts">
 	import type { PageData } from './$types';
 	import Search from './Search.svelte';
-	import { formatLargeNumber } from '$lib/utils';
+	import { formatGrantAmount } from '$lib/utils';
 	import { formatDate } from '$lib/utils';
 	import { checkFilter } from '$lib/utils';
 	import Tr from '$lib/Tr.svelte';
@@ -122,7 +122,7 @@
 							<td class="text-right px-5 align-top lg:align-middle"
 								><a
 									class="block lg:h-full h-36 min-w-full text-md"
-									href={`/donations/${row.donation_id}`}>{'$' + formatLargeNumber(row.amount)}</a
+									href={`/donations/${row.donation_id}`}>{formatGrantAmount(row.amount)}</a
 								></td
 							>
 							<TdLink url={`/org/${encodeURI(row.donor.replaceAll('/', '^'))}`}>{row.donor}</TdLink>
