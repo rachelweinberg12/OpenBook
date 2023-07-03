@@ -26,7 +26,7 @@ export function formatGrantAmount(amount: number) {
 	if (amount === -1) {
 		return 'unknown';
 	} else {
-		return `$${formatLargeNumber(amount)}}`;
+		return `$${formatLargeNumber(amount)}`;
 	}
 }
 
